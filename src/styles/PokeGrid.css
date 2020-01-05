@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     justify-content: space-between;
-    width: 70%;
+    width: 75%;
     margin: 0 auto;
 }
 .regionSelect{
@@ -26,4 +26,4 @@
 .regionSelect button:hover{
     color: white;
     background: rgb(58, 71, 90);
-}
+} 

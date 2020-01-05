@@ -1,0 +1,11 @@
+.fullTeam{
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    margin: 20px auto;
+}
+.pokeTeam{
+    padding: 10px;    
+    border-radius: 50%;
+    background: rgb(58, 71, 90);
+}
