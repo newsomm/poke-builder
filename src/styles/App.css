@@ -1,0 +1,7 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  background:linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
+}
