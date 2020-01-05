@@ -1,18 +1,10 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import PokeCard from './PokeCard'
 import '../styles/PokeGrid.css'
 
 class PokeGrid extends Component {
     state = {
-        regionForm: '',
-        sprites: []
-    }
-    getPokemonInfo = async (pokemon) => {
-        const url = `https://pokeapi.co/api/v2/pokemon/${pokemon}/`
-        const pokeInfo = await axios.get(url)
-        const pokeSprite = pokeInfo.data.id
-        return pokeSprite
+        regionForm: ''
     }
     handleChange = evt => {
         evt.preventDefault();
@@ -21,14 +13,13 @@ class PokeGrid extends Component {
         })
     }
 
-    handleForm = (evt) => {
+    handleForm = async (evt) => {
         evt.preventDefault();
-        this.props.getRegion(this.state.regionForm)
-        this.setState({
-            city: '',
-            state: ''
-        })
-
+        await this.props.getRegion(this.state.regionForm)
+        this.props.regionPokemon(this.state.regionForm)
+        // this.setState({
+        //     regionForm: ''
+        // })
     }
 
 
@@ -37,12 +28,13 @@ class PokeGrid extends Component {
         const pokegrids = this.props.pokeGrid.map((pokemon, index) => {
             const name = pokemon.pokemon_species.name
             let indexNum = index + 1
+            const id = pokemon.entry_number
             const captital = name.charAt(0).toUpperCase() + name.slice(1)
             return <PokeCard
                 capital={captital}
                 name={name}
                 key={name}
-                index={indexNum}
+                index={id}
             // id={id}
             />
         })
@@ -50,11 +42,13 @@ class PokeGrid extends Component {
             <div>
                 <form className='regionSelect' onSubmit={this.handleForm}>
                     <select value={this.state.regionForm} name='regionForm' onChange={this.handleChange}>
+                        <option value=''>Region</option>
                         <option value='1'>Kanto</option>
                         <option value='2'>Johto</option>
                         <option value='3'>Hoenn</option>
                         <option value='4'>Sinnoh</option>
                         <option value='5'>Unova</option>
+                        <option value='6'>Kalos</option>
                     </select>
                     <button type='submit'>Find</button>
                 </form>
