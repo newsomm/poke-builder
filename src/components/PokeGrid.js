@@ -15,9 +15,9 @@ class PokeGrid extends Component {
     addToTeam = (name, id) => {
         this.props.addToTeam(name, id)
     }
-    handleForm = async (evt) => {
+    handleForm = (evt) => {
         evt.preventDefault();
-        await this.props.getRegion(this.state.regionForm)
+        this.props.getRegion(this.state.regionForm)
         this.props.regionPokemon(this.state.regionForm)
     }
     render() {

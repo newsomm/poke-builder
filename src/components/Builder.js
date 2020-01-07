@@ -3,14 +3,25 @@ import axios from 'axios'
 import PokeTeam from './PokeTeam'
 import PokeGrid from './PokeGrid'
 
+//*  FINISHED: Make sure you cannot add the same pokemon to the team more than once 
+
+//TODO   Find way to display types (Maybe new API?)
+
+//TODO   When scroll the team bar shrinks a bit
+
+//TODO   Add Navbar to edit team eventually
+
+//TODO   Team can choose moves and items and shit 
 
 class Builder extends Component {
     state = {
         region: '',
         pokeList: [],
         regionalList: [],
-        pokeTeam: []
+        pokeTeam: [],
+        idFound: undefined
     }
+
     getPokermans = async () => {
         const url = `https://pokeapi.co/api/v2/pokedex/national/`
         const pokemon = await axios.get(url)
@@ -20,6 +31,7 @@ class Builder extends Component {
             regionalList: [...pokeData]
         })
     }
+
     regionPokemon = (region) => {
         let pokeData = this.state.pokeList
         if (region === '1') {
@@ -39,28 +51,49 @@ class Builder extends Component {
             regionalList: [...pokeData]
         })
     }
+
     componentDidMount() {
         this.getPokermans();
     }
+
     addToTeam = (name, id) => {
+        const { pokeTeam, idFound } = this.state
         const pokeData = {
             name: name,
             id: id
         }
+        //! *** .every: checks if every item in array meets condition
+        //* This logic was a pain in the ass to get right 
+        if (pokeTeam.length <= 5) {
+            if (pokeTeam.every(pokemon => pokemon.id !== id)) {
+                this.setState({
+                    idFound: false
+                })
+                if (idFound === false || idFound === undefined) {
+                    this.setState({
+                        pokeTeam: [...pokeTeam, pokeData]
+                    })
+                }
+            }
+        }
+    }
+
+    removeFromTeam = id => {
         this.setState({
-            pokeTeam: [...this.state.pokeTeam, pokeData]
+            pokeTeam: this.state.pokeTeam.filter(pokemon => pokemon.id !== id)
         })
     }
-    getRegion = async (newRegion) => {
-        await this.setState({
+    getRegion = (newRegion) => {
+        this.setState({
             region: newRegion
         })
     }
     render() {
+        console.log(this.state.pokeTeam)
         return (
             <div className='builder'>
                 {/* //TODO PokeTeam At the Top */}
-                <PokeTeam pokeTeam={this.state.pokeTeam} />
+                <PokeTeam pokeTeam={this.state.pokeTeam} remove={this.removeFromTeam} />
                 <PokeGrid addToTeam={this.addToTeam} pokeGrid={this.state.regionalList} getRegion={this.getRegion} regionPokemon={this.regionPokemon} />
             </div>
         )
