@@ -3,15 +3,13 @@ import axios from 'axios'
 import PokeTeam from './PokeTeam'
 import PokeGrid from './PokeGrid'
 
-//TODO Currently, the sort by region function sets the state permanently to the sliced array, thus only allowing 
-//TODO .... it to be searched for a single time. NEED TO FIX!!!!
-//! Fixed!!!: Fixed it by adding a list that would be manipulated every time rather than manipulate the main data set
 
-export class Builder extends Component {
+class Builder extends Component {
     state = {
-        region: '2',
+        region: '',
         pokeList: [],
-        regionalList: []
+        regionalList: [],
+        pokeTeam: []
     }
     getPokermans = async () => {
         const url = `https://pokeapi.co/api/v2/pokedex/national/`
@@ -44,6 +42,15 @@ export class Builder extends Component {
     componentDidMount() {
         this.getPokermans();
     }
+    addToTeam = (name, id) => {
+        const pokeData = {
+            name: name,
+            id: id
+        }
+        this.setState({
+            pokeTeam: [...this.state.pokeTeam, pokeData]
+        })
+    }
     getRegion = async (newRegion) => {
         await this.setState({
             region: newRegion
@@ -53,7 +60,8 @@ export class Builder extends Component {
         return (
             <div className='builder'>
                 {/* //TODO PokeTeam At the Top */}
-                <PokeGrid pokeGrid={this.state.regionalList} getRegion={this.getRegion} regionPokemon={this.regionPokemon} />
+                <PokeTeam pokeTeam={this.state.pokeTeam} />
+                <PokeGrid addToTeam={this.addToTeam} pokeGrid={this.state.regionalList} getRegion={this.getRegion} regionPokemon={this.regionPokemon} />
             </div>
         )
     }

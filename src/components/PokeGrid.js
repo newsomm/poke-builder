@@ -12,34 +12,32 @@ class PokeGrid extends Component {
             [evt.target.name]: evt.target.value
         })
     }
-
+    addToTeam = (name, id) => {
+        this.props.addToTeam(name, id)
+    }
     handleForm = async (evt) => {
         evt.preventDefault();
         await this.props.getRegion(this.state.regionForm)
         this.props.regionPokemon(this.state.regionForm)
-        // this.setState({
-        //     regionForm: ''
-        // })
     }
-
-
-
     render() {
-        const pokegrids = this.props.pokeGrid.map((pokemon, index) => {
+        const pokegrids = this.props.pokeGrid.map((pokemon) => {
             const name = pokemon.pokemon_species.name
-            let indexNum = index + 1
             const id = pokemon.entry_number
             const captital = name.charAt(0).toUpperCase() + name.slice(1)
-            return <PokeCard
-                capital={captital}
-                name={name}
-                key={name}
-                index={id}
-            // id={id}
-            />
+            return (
+                <div onClick={() => this.addToTeam(captital, id)} key={name}>
+                    <PokeCard
+                        capital={captital}
+                        name={name}
+                        index={id}
+                        addToTeam={this.addToTeam}
+                    />
+                </div>
+            )
         })
         return (
-            <div>
+            <div className='gridComponent'>
                 <form className='regionSelect' onSubmit={this.handleForm}>
                     <select value={this.state.regionForm} name='regionForm' onChange={this.handleChange}>
                         <option value=''>Region</option>

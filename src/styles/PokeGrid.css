@@ -1,9 +1,13 @@
+.gridComponent{
+   margin-top: 35vh; 
+}
 .pokeGrid{
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     justify-content: space-between;
-    width: 75%;
+    width: 80%;
     margin: 0 auto;
+    
 }
 .regionSelect{
     width: 10%;
