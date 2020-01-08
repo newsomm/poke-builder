@@ -1,5 +1,5 @@
 .gridComponent{
-   margin-top: 35vh; 
+   margin-top: 38vh; 
 }
 .pokeGrid{
     display: grid;
@@ -12,7 +12,7 @@
 .regionSelect{
     width: 10%;
     padding: 10px;
-    margin: 20px auto;
+    margin: 40px auto 20px auto;
     align-items: center;
     text-align: center;
 }

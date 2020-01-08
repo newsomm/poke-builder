@@ -1,21 +1,22 @@
 import React, { Component } from 'react'
-import Pokecard from './PokeCard'
+import Type from './Type'
 import uuid from 'uuid'
 import '../styles/PokeTeam.css'
+import TeamMember from './TeamMember'
+
+//* For specific pokemon
+// 'https://pokeapi.co/api/v2/pokemon/143'
+
 
 class PokeTeam extends Component {
-    state = {
-
-    }
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll)
     }
-    handleScroll = () => {
 
-    }
     handleRemove = (id) => {
         this.props.remove(id)
     }
+
     handleClear = () => {
         this.props.clearTeam()
     }
@@ -25,7 +26,7 @@ class PokeTeam extends Component {
         const team = pokeTeam.map(pokemon => {
             return (
                 <div onClick={() => this.handleRemove(pokemon.id)} key={uuid()}>
-                    <Pokecard
+                    <TeamMember
                         capital={pokemon.name}
                         index={pokemon.id}
                     />
@@ -35,6 +36,7 @@ class PokeTeam extends Component {
         })
         return (
             <div className='fullTeam'>
+
                 <div>
                     <img className='logo' src='http://pluspng.com/img-png/pokemon-logo-png-pokemon-logo-png-2000.png' alt='logo' />
                 </div>

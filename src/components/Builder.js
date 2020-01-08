@@ -7,7 +7,7 @@ import PokeGrid from './PokeGrid'
 
 //TODO   Ability to search specific pokemon
 
-//TODO   Find way to display types (Maybe new API?)
+//*  FINISHED: Find way to display types (Maybe new API?)
 
 //TODO   Add Navbar to edit team eventually
 
@@ -62,8 +62,6 @@ class Builder extends Component {
             name: name,
             id: id
         }
-        //! *** .every: checks if every item in array meets condition
-        //* This logic was a pain in the ass to get right 
         if (pokeTeam.length <= 5) {
             if (pokeTeam.every(pokemon => pokemon.id !== id)) {
                 this.setState({

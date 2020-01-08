@@ -9,7 +9,7 @@
     width: 120px;
     border-radius: 50%;
     background: rgb(58, 71, 90);
-    margin: 0 auto 20px auto;
+    margin: 0 auto 10px auto;
 }
 .pokecard:hover{
     box-shadow: 2px 2px 12px #000000;
