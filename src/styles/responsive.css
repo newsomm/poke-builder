@@ -1,0 +1,7 @@
+@media only screen and (max-width:600px) {
+    .pokeGrid{
+        grid-template-columns: repeat(2, 2fr);
+        width: 80%;
+        margin: 0 auto;
+    }
+  }

@@ -13,7 +13,7 @@
 }
 
 .clearTeam{
-    margin: 20px auto;
+    margin: 5vh auto 1vh auto;
     border: none;
     padding: 5px;
     border-radius: 8px;
@@ -22,7 +22,62 @@
 .teamContainer{
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    width: 60%;
-    margin: 0 auto;
+    width: 70%;
+    margin: 10px auto;
     height: 20vh;
 }
+
+@media only screen and (max-width:650px) {
+    .teamContainer{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 80%;
+        height: 29vh;
+    }
+    .logo{
+        margin: 10px auto;
+        width: 12%;
+    }
+    .yourName{
+        width: 18%;
+    }
+    .clearTeam{
+        margin: 0 auto 10px auto;
+        border: none;
+        font-size: 8px;
+        padding: 5px;
+        border-radius: 8px;
+    }
+    
+  }
+  @media only screen and (min-width:600px) and (max-width: 1500px) {
+    .fullTeam{
+        position: fixed;
+        z-index: 1em;
+        top: 0;
+        background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
+        width: 100%;
+        text-align: center;
+    }
+    
+    .logo{
+        margin: 10px auto;
+        width: 4%;
+    }
+    
+    .clearTeam{
+        margin: 40px auto;
+        border: none;
+        padding: 5px;
+        border-radius: 8px;
+    }
+    
+    .teamContainer{
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        width: 100%;
+        margin: 0 auto;
+        height: 16vh;
+    }
+    
+  }

@@ -6,7 +6,7 @@ export class Type extends Component {
     state = {
         color: ''
     }
-    componentWillMount() {
+    componentDidMount() {
         this.typeColor(this.props.type)
     }
 

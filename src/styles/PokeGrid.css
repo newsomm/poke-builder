@@ -1,11 +1,11 @@
 .gridComponent{
-   margin-top: 38vh; 
+   margin-top: 40vh; 
 }
 .pokeGrid{
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     justify-content: space-between;
-    width: 80%;
+    width: 87%;
     margin: 0 auto;
     
 }
@@ -31,3 +31,40 @@
     color: white;
     background: rgb(58, 71, 90);
 } 
+@media only screen and (max-width:650px) {
+    .pokeGrid{
+        grid-template-columns: repeat(3, 1fr);
+        width: 90%;
+        margin: 0 auto
+    }
+    .gridComponent{
+        margin-top: 49vh; 
+     }
+     .regionSelect{
+        width: 100%;
+        padding: 10px;
+        margin: 40px auto 20px auto;
+        align-items: center;
+        text-align: center;
+    }
+  }
+@media only screen and (min-width:650px) and (max-width: 1500px) {
+    .pokeGrid{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        justify-content: space-between;
+        width: 100%;
+        margin: 0 auto;
+        
+    }
+    .gridComponent{
+        margin-top: 40vh; 
+     }
+     .regionSelect{
+        width: 100%;
+        padding: 10px;
+        margin: 40px auto 20px auto;
+        align-items: center;
+        text-align: center;
+    }
+  }
