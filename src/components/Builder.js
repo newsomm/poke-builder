@@ -5,9 +5,9 @@ import PokeGrid from './PokeGrid'
 
 //*  FINISHED: Make sure you cannot add the same pokemon to the team more than once 
 
-//TODO   Find way to display types (Maybe new API?)
+//TODO   Ability to search specific pokemon
 
-//TODO   When scroll the team bar shrinks a bit
+//TODO   Find way to display types (Maybe new API?)
 
 //TODO   Add Navbar to edit team eventually
 
@@ -83,17 +83,22 @@ class Builder extends Component {
             pokeTeam: this.state.pokeTeam.filter(pokemon => pokemon.id !== id)
         })
     }
+
+    clearTeam = () => {
+        this.setState({
+            pokeTeam: []
+        })
+    }
+
     getRegion = (newRegion) => {
         this.setState({
             region: newRegion
         })
     }
     render() {
-        console.log(this.state.pokeTeam)
         return (
             <div className='builder'>
-                {/* //TODO PokeTeam At the Top */}
-                <PokeTeam pokeTeam={this.state.pokeTeam} remove={this.removeFromTeam} />
+                <PokeTeam pokeTeam={this.state.pokeTeam} remove={this.removeFromTeam} clearTeam={this.clearTeam} />
                 <PokeGrid addToTeam={this.addToTeam} pokeGrid={this.state.regionalList} getRegion={this.getRegion} regionPokemon={this.regionPokemon} />
             </div>
         )

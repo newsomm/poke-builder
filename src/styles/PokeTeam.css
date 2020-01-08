@@ -1,23 +1,28 @@
 .fullTeam{
     position: fixed;
+    z-index: 1em;
     top: 0;
     background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
-    padding: 50px;
     width: 100%;
-    
+    text-align: center;
 }
+
+.logo{
+    margin: 10px auto;
+    width: 4%;
+}
+
+.clearTeam{
+    margin-bottom: 15px;
+    border: none;
+    padding: 5px;
+    border-radius: 8px;
+}
+
 .teamContainer{
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
     width: 60%;
-    height: 200px;
     margin: 0 auto;
-}
-.pokeTeam{
-    padding: 10px;    
-    border-radius: 50%;
-    background-image: url('https://www.https://www.pngarts.com/files/4/Pokeball-PNG-Image-Transparent-Background.png.com/picdir/middle/65-653120_pokeball-transparent-background-clipart.png');
-    height: 100px;
-    width: 100px;
-    background: rgb(58, 71, 90);
+    height: 20vh;
 }
