@@ -5,10 +5,6 @@ import TeamMember from './TeamMember'
 
 
 class PokeTeam extends Component {
-    componentDidMount() {
-        window.addEventListener('scroll', this.handleScroll)
-    }
-
     handleRemove = (id) => {
         this.props.remove(id)
     }

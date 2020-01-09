@@ -9,15 +9,15 @@ class TeamMember extends Component {
         types: []
     }
 
-    async componentDidMount() {
-        await this.getType()
+    componentDidMount() {
+        this.getType()
     }
 
     getType = async () => {
         const url = `https://pokeapi.co/api/v2/pokemon/${this.props.index}`
         const pokeTypeData = await axios.get(url)
         const getTypes = pokeTypeData.data.types
-        await this.setState({
+        this.setState({
             types: [...getTypes]
         })
     }
