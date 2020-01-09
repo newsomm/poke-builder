@@ -31,7 +31,6 @@ class PokeGrid extends Component {
                         capital={captital}
                         name={name}
                         index={id}
-                        addToTeam={this.addToTeam}
                     />
                 </div>
             )

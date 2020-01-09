@@ -50,7 +50,7 @@
     }
     
   }
-  @media only screen and (min-width:600px) and (max-width: 1500px) {
+  @media only screen and (min-width:650px) and (max-width: 1500px) {
     .fullTeam{
         position: fixed;
         z-index: 1em;
