@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PokeCard from './PokeCard'
-import '../styles/PokeGrid.css'
+import '../../styles/PokeGrid.css'
 
 class PokeGrid extends Component {
     state = {

@@ -3,16 +3,6 @@ import axios from 'axios'
 import PokeTeam from './PokeTeam'
 import PokeGrid from './PokeGrid'
 
-//*  FINISHED: Make sure you cannot add the same pokemon to the team more than once 
-
-//TODO   Ability to search specific pokemon
-
-//*  FINISHED: Find way to display types (Maybe new API?)
-
-//TODO   Add Navbar to edit team eventually
-
-//TODO   Team can choose moves and items and shit 
-
 class Builder extends Component {
     state = {
         region: '',

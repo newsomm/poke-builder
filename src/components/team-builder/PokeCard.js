@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../styles/PokeCard.css'
+import '../../styles/PokeCard.css'
 
 
 class PokeCard extends Component {
