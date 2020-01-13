@@ -1,0 +1,24 @@
+.NavBar{
+    height: 7vh;
+    background: rgb(235, 8, 8);
+    width: 100%;
+    align-items: center; 
+}
+.mainLogo{
+    width: 180px;
+}
+
+.navItemContainer{
+   display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    width: 80%;
+    margin: 0 auto;
+}
+
+.navLinks{
+    list-style: none;
+    text-decoration: none;
+    color: white;
+    padding: 5px;
+}

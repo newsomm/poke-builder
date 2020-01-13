@@ -1,7 +1,5 @@
 .fullTeam{
-    position: fixed;
-    z-index: 1em;
-    top: 0;
+    margin-top: 20px;
     background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
     width: 100%;
     text-align: center;
@@ -13,7 +11,7 @@
 }
 
 .clearTeam{
-    margin: 5vh auto 1vh auto;
+    margin: 5vh auto 2vh auto;
     border: none;
     padding: 5px;
     border-radius: 8px;
@@ -61,9 +59,6 @@
   }
   @media only screen and (min-width:650px) and (max-width: 1500px) {
     .fullTeam{
-        position: fixed;
-        z-index: 1em;
-        top: 0;
         background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
         width: 100%;
         text-align: center;

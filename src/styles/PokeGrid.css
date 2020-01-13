@@ -1,6 +1,3 @@
-.gridComponent{
-   margin-top: 42vh; 
-}
 .pokeGrid{
     display: grid;
     grid-template-columns: repeat(8, 1fr);

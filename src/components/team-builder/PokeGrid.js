@@ -4,7 +4,28 @@ import '../../styles/PokeGrid.css'
 
 class PokeGrid extends Component {
     state = {
-        regionForm: ''
+        regionForm: '',
+        scrolled: false
+    }
+
+    componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll = () => {
+        if (window.scrollY !== 0) {
+            this.setState({
+                scrolled: true
+            })
+        } else {
+            this.setState({
+                scrolled: false
+            })
+        }
     }
     handleChange = evt => {
         evt.preventDefault();
@@ -36,7 +57,7 @@ class PokeGrid extends Component {
             )
         })
         return (
-            <div className='gridComponent'>
+            <div className='gridComponent' style={{ marginTop: this.state.scrolled ? '47vh' : '0' }}>
                 <form className='regionSelect' onSubmit={this.handleForm}>
                     <select value={this.state.regionForm} name='regionForm' onChange={this.handleChange}>
                         <option value=''>Region</option>
