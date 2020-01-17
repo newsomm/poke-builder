@@ -1,33 +1,10 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import uuid from 'uuid'
 import '../../styles/PokeTeam.css'
 import TeamMember from './TeamMember'
 
 
-class PokeTeam extends Component {
-    static defaultProps = {
-        position: 'fixed',
-        top: 0
-    }
-    state = {
-        scrolled: false
-    }
-
-    componentDidMount() {
-        window.addEventListener('scroll', this.handleScroll)
-    }
-
-    handleScroll = () => {
-        if (window.scrollY !== 0) {
-            this.setState({
-                scrolled: true
-            })
-        } else {
-            this.setState({
-                scrolled: false
-            })
-        }
-    }
+class PokeTeam extends PureComponent {
     handleRemove = (id) => {
         this.props.remove(id)
     }
@@ -36,8 +13,12 @@ class PokeTeam extends Component {
         this.props.clearTeam()
     }
 
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+
     render() {
-        const { pokeTeam, position, top, bottom } = this.props
+        const { pokeTeam } = this.props
         const team = pokeTeam.map(pokemon => {
             return (
                 <div onClick={() => this.handleRemove(pokemon.id)} key={uuid()}>
@@ -50,7 +31,7 @@ class PokeTeam extends Component {
             )
         })
         return (
-            <div className='fullTeam' style={this.state.scrolled ? { position: `${position}`, top: `${top}` } : { display: 'block' }}>
+            <div className={this.props.scrolled}>
                 <div>
                     <img className='logo' src='http://pluspng.com/img-png/pokemon-logo-png-pokemon-logo-png-2000.png' alt='logo' />
                 </div>
@@ -58,7 +39,6 @@ class PokeTeam extends Component {
                 <div className='teamContainer'>
                     {team}
                 </div>
-                <button onClick={this.handleClear} className='clearTeam'>Clear Team</button>
             </ div>
         )
     }

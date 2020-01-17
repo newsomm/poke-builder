@@ -6,7 +6,22 @@ import SavedTeam from './components/team-page/SavedTeam';
 import './styles/App.css';
 import './styles/responsive.css'
 
+//TODO Fix Responsiveness (Fix pokeTeam Buttons )
+
+
+
 class App extends Component {
+  state = {
+    team: []
+  }
+
+  getTeam = (userTeam) => {
+    this.setState({
+      team: userTeam
+    })
+  }
+
+
   render() {
     return (
       <Route>
@@ -14,8 +29,8 @@ class App extends Component {
           <Navbar />
           <Switch>
             <Route exact path='/' render={() => <h1>Pokemon Builder</h1>} />
-            <Route exact path='/builder' render={() => <Builder />} />
-            <Route exact path='/my-team' render={() => <SavedTeam />} />
+            <Route exact path='/builder' render={() => <Builder saveTeam={this.getTeam} />} />
+            <Route exact path='/my-team' render={() => <SavedTeam team={this.state.team} />} />
           </Switch>
         </div>
       </Route>

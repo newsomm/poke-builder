@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../../styles/Types.css'
 import uuid from 'uuid'
 
-export class Type extends Component {
+class Type extends Component {
     state = {
         color: ''
     }

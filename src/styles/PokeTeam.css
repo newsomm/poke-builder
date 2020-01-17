@@ -1,25 +1,6 @@
-.fullTeam{
-    margin-top: 20px;
-    background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
-    width: 100%;
-    text-align: center;
-}
-
 .logo{
     margin: 10px auto;
     width: 4%;
-}
-
-.clearTeam{
-    margin: 5vh auto 2vh auto;
-    border: none;
-    padding: 5px;
-    border-radius: 8px;
-}
-
-.clearTeam:hover{
-    color: white;
-    background: rgb(58, 71, 90);
 }
 
 .teamContainer{

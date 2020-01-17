@@ -1,32 +1,12 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PokeCard from './PokeCard'
 import '../../styles/PokeGrid.css'
 
-class PokeGrid extends Component {
+class PokeGrid extends PureComponent {
     state = {
-        regionForm: '',
-        scrolled: false
+        regionForm: ''
     }
 
-    componentDidMount() {
-        window.addEventListener('scroll', this.handleScroll)
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
-    }
-
-    handleScroll = () => {
-        if (window.scrollY !== 0) {
-            this.setState({
-                scrolled: true
-            })
-        } else {
-            this.setState({
-                scrolled: false
-            })
-        }
-    }
     handleChange = evt => {
         evt.preventDefault();
         this.setState({
@@ -57,7 +37,7 @@ class PokeGrid extends Component {
             )
         })
         return (
-            <div className='gridComponent' style={{ marginTop: this.state.scrolled ? '47vh' : '0' }}>
+            <div className={this.props.scrolled}>
                 <form className='regionSelect' onSubmit={this.handleForm}>
                     <select value={this.state.regionForm} name='regionForm' onChange={this.handleChange}>
                         <option value=''>Region</option>

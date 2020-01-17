@@ -10,6 +10,8 @@
     border-radius: 50%;
     background: rgb(58, 71, 90);
     margin: 0 auto 10px auto;
+    cursor: pointer;
+
 }
 .teamcard:hover{
     box-shadow: 2px 2px 12px #000000;

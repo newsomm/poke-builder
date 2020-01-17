@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Route, Switch } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import PokeTeam from './PokeTeam'
 import PokeGrid from './PokeGrid'
+import '../../styles/Builder.css'
 
 class Builder extends Component {
     state = {
@@ -10,7 +11,9 @@ class Builder extends Component {
         pokeList: [],
         regionalList: [],
         pokeTeam: [],
-        idFound: undefined
+        idFound: undefined,
+        scrolled: false,
+        toSavedTeam: false
     }
 
     getPokermans = async () => {
@@ -43,8 +46,38 @@ class Builder extends Component {
         })
     }
 
+
     componentDidMount() {
         this.getPokermans();
+        window.addEventListener('scroll', this.handleScroll)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+
+    handleSave = () => {
+        const { pokeTeam } = this.state
+        if (pokeTeam.length === 6) {
+            this.props.saveTeam(pokeTeam)
+            this.setState({
+                toSavedTeam: true
+            })
+        } else {
+            alert('Team Must Have 6 Members')
+        }
+    }
+
+    handleScroll = () => {
+        if (window.scrollY !== 0) {
+            this.setState({
+                scrolled: true
+            })
+        } else {
+            this.setState({
+                scrolled: false
+            })
+        }
     }
 
     addToTeam = (name, id) => {
@@ -85,10 +118,21 @@ class Builder extends Component {
         })
     }
     render() {
+        if (this.state.toSavedTeam === true) {
+            return (
+                <Redirect to='/my-team' />
+            )
+        }
         return (
-            <div className='builder'>
-                <PokeTeam pokeTeam={this.state.pokeTeam} remove={this.removeFromTeam} clearTeam={this.clearTeam} />
-                <PokeGrid addToTeam={this.addToTeam} pokeGrid={this.state.regionalList} getRegion={this.getRegion} regionPokemon={this.regionPokemon} />
+            <div className='builder' >
+                <div className={this.state.scrolled ? 'fullTeamFixed' : 'fullTeam'}>
+                    <PokeTeam pokeTeam={this.state.pokeTeam} remove={this.removeFromTeam} />
+                    <div className='teamButtons'>
+                        <button onClick={this.handleSave} className='clearTeam'>Save Team</button>
+                        <button onClick={this.clearTeam} className='clearTeam'>Clear Team</button>
+                    </div>
+                </div>
+                <PokeGrid scrolled={this.state.scrolled ? 'gridComponentFixed' : 'gridComponent'} addToTeam={this.addToTeam} pokeGrid={this.state.regionalList} getRegion={this.getRegion} regionPokemon={this.regionPokemon} />
             </div>
         )
     }
