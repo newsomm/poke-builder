@@ -10,6 +10,9 @@ import './styles/responsive.css'
 
 //TODO Look through API to get moves, abilities, natures, etc  https://pokeapi.co/api/v2/pokemon/3/
 
+//TODO Make it so the 'your team' and pokemon logo is hidden when user scrolls 
+
+
 class App extends Component {
   state = {
     team: []
@@ -21,11 +24,19 @@ class App extends Component {
     }, this.syncLocalStorage)
   }
 
-  syncLocalStorage() {
+  syncLocalStorage = () => {
     window.localStorage.setItem(
       'savedTeam',
       JSON.stringify(this.state.team)
     )
+  }
+
+  deleteTeam = () => {
+    this.setState({
+      team: []
+    }, () => {
+      window.localStorage.removeItem('savedTeam')
+    })
   }
 
   render() {
@@ -36,7 +47,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' render={() => <h1>Pokemon Builder</h1>} />
             <Route exact path='/builder' render={() => <Builder saveTeam={this.getTeam} />} />
-            <Route exact path='/my-team' render={() => <SavedTeam team={this.state.team} />} />
+            <Route exact path='/my-team' render={() => <SavedTeam team={this.state.team} deleteTeam={this.deleteTeam} />} />
           </Switch>
         </div>
       </Route>
