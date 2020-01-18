@@ -1,0 +1,27 @@
+.teamMemberInfo{
+    font-family: 'Press Start 2P', cursive;
+    border-radius: 10px;
+    color: white;
+    margin: 10px;
+    padding: 20px;
+    background: rgb(49,62,83);
+    background: linear-gradient(123deg, rgba(49,62,83,1) 50%, rgba(58,71,90,1) 50%);
+    display: flex;
+    justify-content: space-between;
+}
+
+.savedTeamImg{
+    width: 150px;
+    margin: 18px;
+}
+
+.moveList{
+    list-style: none;
+}
+
+.savedTypeList{
+    margin-top: 5%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 50%;
+}

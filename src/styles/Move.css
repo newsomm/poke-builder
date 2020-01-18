@@ -1,0 +1,17 @@
+.move{
+    margin: 4px;
+    font-size: 6px;
+    color: white;
+    padding: 10px;
+    width: 170px;
+    border-radius: 40px;
+    background: linear-gradient(123deg, rgba(49,62,83,1) 50%, rgba(58,71,90,1) 50%);
+    border: 1px solid rgb(182, 171, 171);
+}
+
+.typePP{
+    width: 140px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

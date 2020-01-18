@@ -1,3 +1,9 @@
 .SavedTeam{
 height: 100vh;
 }
+.savedTeamContainer{
+    width: 75%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 10vh auto 0 auto; 
+}

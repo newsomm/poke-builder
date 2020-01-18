@@ -1,16 +1,24 @@
 import React, { Component } from 'react'
+import TeamMemberInfo from './TeamMemberInfo'
+import '../../styles/SavedTeam.css'
 
 
 class SavedTeam extends Component {
+
+
     render() {
-        const team = this.props.team.map(member => (
-            <h1 key={member.id}>{member.name}</h1>
+        const savedTeam = JSON.parse(window.localStorage.getItem('savedTeam'))
+        console.log(savedTeam)
+        const team = savedTeam.map(member => (
+            <TeamMemberInfo id={member.id} name={member.name} key={member.id} />
         ))
 
         return (
             <div className='SavedTeam'>
-                <h1>Saved Team</h1>
-                {team}
+                <button className='clearTeam'>Delete Team</button>
+                <div className='savedTeamContainer'>
+                    {team}
+                </div>
             </div>
         )
     }

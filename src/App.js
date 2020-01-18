@@ -8,7 +8,7 @@ import './styles/responsive.css'
 
 //TODO Fix Responsiveness (Fix pokeTeam Buttons )
 
-
+//TODO Look through API to get moves, abilities, natures, etc  https://pokeapi.co/api/v2/pokemon/3/
 
 class App extends Component {
   state = {
@@ -18,9 +18,15 @@ class App extends Component {
   getTeam = (userTeam) => {
     this.setState({
       team: userTeam
-    })
+    }, this.syncLocalStorage)
   }
 
+  syncLocalStorage() {
+    window.localStorage.setItem(
+      'savedTeam',
+      JSON.stringify(this.state.team)
+    )
+  }
 
   render() {
     return (

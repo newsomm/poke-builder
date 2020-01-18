@@ -10,6 +10,12 @@ class Type extends Component {
         this.typeColor(this.props.type)
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.type !== this.props.type) {
+            this.typeColor(this.props.type)
+        }
+    }
+
     typeColor = (type) => {
         let color;
         if (type === 'fire') {
