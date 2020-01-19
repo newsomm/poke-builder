@@ -6,8 +6,6 @@ import '../../styles/Move.css'
 
 //TODO Figure out the move api and use it per move call to get data 
 
-//! Move will just be a display component that gets the move data from the parent and displays it
-
 //* API Call listed at thus address https://pokeapi.co/api/v2/move/33/
 
 class Move extends Component {

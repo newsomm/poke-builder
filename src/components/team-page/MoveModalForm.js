@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import '../../styles/MoveModalForm.css'
 
 class MoveModalForm extends Component {
     state = {
@@ -7,7 +8,14 @@ class MoveModalForm extends Component {
     }
 
     handleChange = evt => {
+        evt.preventDefault();
+        this.setState({
+            [evt.target.name]: evt.target.value
+        })
+    }
 
+    handleCancel = () => {
+        this.props.cancel()
     }
 
     getMoveList = async () => {
@@ -15,51 +23,60 @@ class MoveModalForm extends Component {
         const moveList = pokeData.moves
     }
 
-
-
     render() {
         return (
-            <div className='modalBackground'>
-                <img className='savedTeamImg' alt={this.props.name} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.props.id}.png`}></img>
-                <form className='' onSubmit={this.handleForm}>
-                    <select value={this.state.regionForm} name='regionForm' onChange={this.handleChange}>
-                        <option value=''>Region</option>
-                        <option value='1'>Kanto</option>
-                        <option value='2'>Johto</option>
-                        <option value='3'>Hoenn</option>
-                        <option value='4'>Sinnoh</option>
-                        <option value='5'>Unova</option>
-                        <option value='6'>Kalos</option>
-                    </select>
-                    <select value={this.state.regionForm} name='regionForm' onChange={this.handleChange}>
-                        <option value=''>Region</option>
-                        <option value='1'>Kanto</option>
-                        <option value='2'>Johto</option>
-                        <option value='3'>Hoenn</option>
-                        <option value='4'>Sinnoh</option>
-                        <option value='5'>Unova</option>
-                        <option value='6'>Kalos</option>
-                    </select>
-                    <select value={this.state.regionForm} name='regionForm' onChange={this.handleChange}>
-                        <option value=''>Region</option>
-                        <option value='1'>Kanto</option>
-                        <option value='2'>Johto</option>
-                        <option value='3'>Hoenn</option>
-                        <option value='4'>Sinnoh</option>
-                        <option value='5'>Unova</option>
-                        <option value='6'>Kalos</option>
-                    </select>
-                    <select value={this.state.regionForm} name='regionForm' onChange={this.handleChange}>
-                        <option value=''>Region</option>
-                        <option value='1'>Kanto</option>
-                        <option value='2'>Johto</option>
-                        <option value='3'>Hoenn</option>
-                        <option value='4'>Sinnoh</option>
-                        <option value='5'>Unova</option>
-                        <option value='6'>Kalos</option>
-                    </select>
-                    <button type='submit'>Find</button>
-                </form>
+            <div>
+                <div className='modalForm'>
+                    <img className='savedTeamImg' alt={this.props.name} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.props.id}.png`}></img>
+                    <form className='' onSubmit={this.handleForm}>
+                        <div>
+                            <select value={this.state.regionForm} name='regionForm' onChange={this.handleChange}>
+                                <option value=''>Region</option>
+                                <option value='1'>Kanto</option>
+                                <option value='2'>Johto</option>
+                                <option value='3'>Hoenn</option>
+                                <option value='4'>Sinnoh</option>
+                                <option value='5'>Unova</option>
+                                <option value='6'>Kalos</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select value={this.state.regionForm} name='regionForm' onChange={this.handleChange}>
+                                <option value=''>Region</option>
+                                <option value='1'>Kanto</option>
+                                <option value='2'>Johto</option>
+                                <option value='3'>Hoenn</option>
+                                <option value='4'>Sinnoh</option>
+                                <option value='5'>Unova</option>
+                                <option value='6'>Kalos</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select value={this.state.regionForm} name='regionForm' onChange={this.handleChange}>
+                                <option value=''>Region</option>
+                                <option value='1'>Kanto</option>
+                                <option value='2'>Johto</option>
+                                <option value='3'>Hoenn</option>
+                                <option value='4'>Sinnoh</option>
+                                <option value='5'>Unova</option>
+                                <option value='6'>Kalos</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select value={this.state.regionForm} name='regionForm' onChange={this.handleChange}>
+                                <option value=''>Region</option>
+                                <option value='1'>Kanto</option>
+                                <option value='2'>Johto</option>
+                                <option value='3'>Hoenn</option>
+                                <option value='4'>Sinnoh</option>
+                                <option value='5'>Unova</option>
+                                <option value='6'>Kalos</option>
+                            </select>
+                        </div>
+                        <button className='clearTeam' type='submit'>Save</button>
+                        <button className='clearTeam' onClick={this.handleCancel}>Cancel</button>
+                    </form>
+                </div>
             </div>
         )
     }
