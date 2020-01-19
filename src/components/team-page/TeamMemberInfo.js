@@ -44,14 +44,13 @@ class TeamMemberInfo extends Component {
                 </div>
                 <div>
                     <ul className='moveList'>
-                        {/* <li>Move</li>
-                        <li>Move</li>
-                        <li>Move</li>
-                        <li>Move</li> */}
                         <Move />
                         <Move />
                         <Move />
                         <Move />
+                        <div className='movesetButton'>
+                            <button className='clearTeam cTButton'>Set Moveset</button>
+                        </div>
                     </ul>
                 </div>
 

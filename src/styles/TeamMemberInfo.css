@@ -11,12 +11,24 @@
 }
 
 .savedTeamImg{
-    width: 150px;
+    width: 160px;
     margin: 18px;
 }
 
 .moveList{
     list-style: none;
+}
+
+.movesetButton{
+    text-align: center;
+}
+
+.cTButton{
+    margin: 10px;
+    border: 1px solid white;
+}
+.cTButton:hover{
+    border: 1px solid white;
 }
 
 .savedTypeList{

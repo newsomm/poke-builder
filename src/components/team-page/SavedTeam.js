@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import TeamMemberInfo from './TeamMemberInfo'
+import { Link } from 'react-router-dom'
 import '../../styles/SavedTeam.css'
 
 //TODO      Figure out how to rerender on click for 'clear team'
@@ -17,7 +18,9 @@ class SavedTeam extends Component {
             return (
                 <div>
                     <h1>You have no saved teams. Go and make one!</h1>
-                    <button>Make Team</button>
+                    <Link to='/builder'>
+                        <button>Make Team</button>
+                    </Link>
                 </div>
             )
         } else {
@@ -25,7 +28,6 @@ class SavedTeam extends Component {
             const team = savedTeam.map(member => (
                 <TeamMemberInfo id={member.id} name={member.name} key={member.id} />
             ))
-
             return (
                 <div className='SavedTeam'>
                     <button onClick={this.handleDelete} className='clearTeam'>Delete Team</button>
