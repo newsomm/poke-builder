@@ -1,0 +1,16 @@
+.modalForm{
+    background: rgb(58, 71, 90);
+    text-align: center;
+    width: 20em;
+    position: fixed;
+    right: 20px;
+    left: 40px;
+}
+.modalBackground{
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0,0,0,0.5);
+}
