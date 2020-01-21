@@ -16,7 +16,7 @@ class Move extends Component {
         pp: ''
     }
     getMoveData = async () => {
-        const move = await axios.get('https://pokeapi.co/api/v2/move/128/')
+        const move = await axios.get(`https://pokeapi.co/api/v2/move/${this.props.name}/`)
         const { name, power, pp, type } = move.data
         this.setState({
             name: name,
@@ -36,7 +36,6 @@ class Move extends Component {
         return (
             <div className='move'>
                 <h1>{captital}</h1>
-                {/* <h1>{power}</h1> */}
                 <div className='typePP'>
                     <Type type={type} />
                     <h1>PP  {pp}/{pp}</h1>

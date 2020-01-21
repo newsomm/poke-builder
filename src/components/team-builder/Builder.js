@@ -126,7 +126,7 @@ class Builder extends Component {
         return (
             <div className='builder' >
                 <div className={this.state.scrolled ? 'fullTeamFixed' : 'fullTeam'}>
-                    <PokeTeam pokeTeam={this.state.pokeTeam} remove={this.removeFromTeam} />
+                    <PokeTeam pokeTeam={this.state.pokeTeam} remove={this.removeFromTeam} scrolled={this.state.scrolled} />
                     <div className='teamButtons'>
                         <button onClick={this.handleSave} className='clearTeam'>Save Team</button>
                         <button onClick={this.clearTeam} className='clearTeam'>Clear Team</button>

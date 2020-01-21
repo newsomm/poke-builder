@@ -24,9 +24,11 @@
     border: none;
     padding: 5px;
     border-radius: 8px;
+    border: 1px solid white;
 }
 
 .clearTeam:hover{
     color: white;
     background: rgb(58, 71, 90);
+    border: 1px solid white;
 }

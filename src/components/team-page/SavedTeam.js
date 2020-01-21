@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import TeamMemberInfo from './TeamMemberInfo'
 import { Link } from 'react-router-dom'
 import '../../styles/SavedTeam.css'
-import MoveModalForm from './MoveModalForm'
 
 //* DONE      Figure out how to rerender on click for 'clear team'
 //TODO      Work out the move picking functionality?
-//TODO      Make the 'make a team button' route to the builder page 
+//*DONE     Make the 'make a team button' route to the builder page (FIXED BY 'forceUpdate()')
 //TODO       
 
 class SavedTeam extends Component {
@@ -18,10 +17,10 @@ class SavedTeam extends Component {
     render() {
         if (localStorage.getItem("savedTeam") === null) {
             return (
-                <div>
-                    <h1>You have no saved teams. Go and make one!</h1>
+                <div className='noTeam'>
+                    <h1 >You have no saved teams. Go and make one!</h1>
                     <Link to='/builder'>
-                        <button>Make Team</button>
+                        <button className='clearTeam'>Make Team</button>
                     </Link>
                 </div>
             )

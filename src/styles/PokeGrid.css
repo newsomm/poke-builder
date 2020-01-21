@@ -1,11 +1,6 @@
 .gridComponentFixed{
-    margin-top: 47vh
+    margin-top: 37vh
 }
-
-.gridComponent{
-    margin-top: 0
-}
-
 .pokeGrid{
     display: grid;
     grid-template-columns: repeat(8, 1fr);

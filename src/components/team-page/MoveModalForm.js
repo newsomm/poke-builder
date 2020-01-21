@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import '../../styles/MoveModalForm.css'
 
 class MoveModalForm extends Component {
+    //! I am aware this is terribly handled, but I didnt know how to do it without hardcoding the individual values, then puttin them into an array  
     state = {
-
+        chosenMoves: [],
+        move1: '',
+        move2: '',
+        move3: '',
+        move4: ''
     }
 
     handleChange = evt => {
@@ -14,67 +18,55 @@ class MoveModalForm extends Component {
         })
     }
 
+    handleSubmit = async (evt) => {
+        evt.preventDefault();
+        const { move1, move2, move3, move4 } = this.state
+        await this.setState({
+            chosenMoves: [move1, move2, move3, move4]
+        })
+        this.props.getMoves(this.state.chosenMoves)
+    }
+
     handleCancel = () => {
         this.props.cancel()
     }
 
-    getMoveList = async () => {
-        const pokeData = axios.get('https://pokeapi.co/api/v2/pokemon/3/')
-        const moveList = pokeData.moves
-    }
-
     render() {
+        const moveSelect = this.props.moves.map(move => {
+            const moveName = move.move.name
+            return <option key={moveName} value={moveName}>{moveName}</option>
+        })
         return (
             <div>
                 <div className='modalForm'>
-                    <img className='savedTeamImg' alt={this.props.name} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.props.id}.png`}></img>
-                    <form className='' onSubmit={this.handleForm}>
-                        <div>
-                            <select value={this.state.regionForm} name='regionForm' onChange={this.handleChange}>
-                                <option value=''>Region</option>
-                                <option value='1'>Kanto</option>
-                                <option value='2'>Johto</option>
-                                <option value='3'>Hoenn</option>
-                                <option value='4'>Sinnoh</option>
-                                <option value='5'>Unova</option>
-                                <option value='6'>Kalos</option>
+                    <img className='modalImg' alt={this.props.name} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.props.id}.png`}></img>
+                    <form className='' onSubmit={this.handleSubmit} >
+                        <div className='moveSelectForm'>
+                            <select className='moveSelect' value={this.state.move1} name='move1' onChange={this.handleChange}>
+                                <option>Select Move</option>
+                                {moveSelect}
                             </select>
                         </div>
-                        <div>
-                            <select value={this.state.regionForm} name='regionForm' onChange={this.handleChange}>
-                                <option value=''>Region</option>
-                                <option value='1'>Kanto</option>
-                                <option value='2'>Johto</option>
-                                <option value='3'>Hoenn</option>
-                                <option value='4'>Sinnoh</option>
-                                <option value='5'>Unova</option>
-                                <option value='6'>Kalos</option>
+                        <div className='moveSelectForm'>
+                            <select className='moveSelect' value={this.state.move2} name='move2' onChange={this.handleChange}>
+                                <option>Select Move</option>
+                                {moveSelect}
                             </select>
                         </div>
-                        <div>
-                            <select value={this.state.regionForm} name='regionForm' onChange={this.handleChange}>
-                                <option value=''>Region</option>
-                                <option value='1'>Kanto</option>
-                                <option value='2'>Johto</option>
-                                <option value='3'>Hoenn</option>
-                                <option value='4'>Sinnoh</option>
-                                <option value='5'>Unova</option>
-                                <option value='6'>Kalos</option>
+                        <div className='moveSelectForm'>
+                            <select className='moveSelect' value={this.state.move3} name='move3' onChange={this.handleChange}>
+                                <option>Select Move</option>
+                                {moveSelect}
                             </select>
                         </div>
-                        <div>
-                            <select value={this.state.regionForm} name='regionForm' onChange={this.handleChange}>
-                                <option value=''>Region</option>
-                                <option value='1'>Kanto</option>
-                                <option value='2'>Johto</option>
-                                <option value='3'>Hoenn</option>
-                                <option value='4'>Sinnoh</option>
-                                <option value='5'>Unova</option>
-                                <option value='6'>Kalos</option>
+                        <div className='moveSelectForm'>
+                            <select className='moveSelect' value={this.state.move4} name='move4' onChange={this.handleChange}>
+                                <option>Select Move</option>
+                                {moveSelect}
                             </select>
                         </div>
-                        <button className='clearTeam' type='submit'>Save</button>
-                        <button className='clearTeam' onClick={this.handleCancel}>Cancel</button>
+                        <button className='clearTeam modalButtons' type='submit'>Save</button>
+                        <button className='clearTeam modalButtons' onClick={this.handleCancel}>Cancel</button>
                     </form>
                 </div>
             </div>

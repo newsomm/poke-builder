@@ -14,8 +14,11 @@ class TeamMemberInfo extends Component {
     state = {
         moves: [],
         types: [],
-        addingMoves: false
+        addingMoves: false,
+        chosenMoves: [],
+        movesChosen: false
     }
+
     componentDidMount() {
         this.getIndividualData();
     }
@@ -30,6 +33,15 @@ class TeamMemberInfo extends Component {
             types: types
         })
     }
+
+    getSelectedMoves = moves => {
+        this.setState({
+            chosenMoves: moves,
+            addingMoves: false,
+            movesChosen: true
+        })
+    }
+
     addingHandler = () => {
         this.setState({
             addingMoves: true
@@ -40,16 +52,29 @@ class TeamMemberInfo extends Component {
             addingMoves: false
         })
     }
-
     render() {
-        // if (this.state.addingMoves) {
-        //     return (
-        //         <div>
-        //             <Background />}
-        //             <MoveModalForm cancel={this.modalCancel} />
-        //         </div>
-        //     )
-        // }
+        const displayMoves = () => {
+            let moveDisplay = []
+            if (!this.state.movesChosen) {
+                for (let i = 1; i < 5; i++) {
+                    moveDisplay.push(
+                        <div key={`move-${i}`} className='move'>
+                            <h1>Move {i}</h1>
+                            <div className='typePP'>
+                                <Type type={'normal'} />
+                                <h1>PP  ?/?</h1>
+                            </div>
+                        </div>
+                    )
+                }
+            } else {
+                moveDisplay = moves
+            }
+            return moveDisplay
+        }
+        const moves = this.state.chosenMoves.map(move => (
+            <Move name={move} />
+        ))
         const types = this.state.types.map(type => (
             <Type id={type.type.name} type={type.type.name} key={type.type.name} />
         ))
@@ -66,21 +91,16 @@ class TeamMemberInfo extends Component {
                     </div>
                     <div>
                         <ul className='moveList'>
-                            <Move />
-                            <Move />
-                            <Move />
-                            <Move />
+                            {displayMoves()}
                             <div className='movesetButton'>
                                 <button className='clearTeam cTButton' onClick={this.addingHandler}>Set Moveset</button>
                             </div>
                         </ul>
                     </div>
                     <div>
-                        {this.state.addingMoves ? [<Background />, <MoveModalForm cancel={this.modalCancel} id={this.props.id} />] : null}
+                        {this.state.addingMoves ? [<Background />, <MoveModalForm moves={this.state.moves} getMoves={this.getSelectedMoves} cancel={this.modalCancel} id={this.props.id} />] : null}
                     </div>
                 </div>
-
-
             </div>
 
         )
