@@ -34,7 +34,8 @@ class MoveModalForm extends Component {
     render() {
         const moveSelect = this.props.moves.map(move => {
             const moveName = move.move.name
-            return <option key={moveName} value={moveName}>{moveName}</option>
+            const fixedName = this.props.fixName(moveName)
+            return <option key={moveName} value={moveName}>{fixedName}</option>
         })
         return (
             <div>

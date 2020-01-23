@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import '../../styles/TeamMemberInfo.css'
-import Type from '../team-builder/Type'
+import Type from '../general/Type'
 import MoveModalForm from './MoveModalForm'
-import Background from './Background'
+import Background from '../general/Background'
 import Move from './Move'
+import Loader from '../general/Loader'
 
 
 
@@ -16,7 +17,8 @@ class TeamMemberInfo extends Component {
         types: [],
         addingMoves: false,
         chosenMoves: [],
-        movesChosen: false
+        movesChosen: false,
+        isLoaded: false
     }
 
     componentDidMount() {
@@ -26,11 +28,11 @@ class TeamMemberInfo extends Component {
     getIndividualData = async () => {
         //! Will change to pass in props as url params 
         const pokeData = await axios.get(`https://pokeapi.co/api/v2/pokemon/${this.props.id}/`)
-        const { moves, name, types } = pokeData.data
+        const { moves, types } = pokeData.data
         this.setState({
             moves: moves,
-            name: name,
-            types: types
+            types: types,
+            isLoaded: true
         })
     }
 
@@ -52,10 +54,28 @@ class TeamMemberInfo extends Component {
             addingMoves: false
         })
     }
+
+    fixName = str => {
+        let name;
+        if (str.includes('-')) {
+            let arr = str.split('-')
+            const fixedArr = arr.map(str => {
+                let fixedMove = str.charAt(0).toUpperCase() + str.slice(1)
+                return fixedMove
+            })
+            name = fixedArr.join(' ')
+        } else {
+            name = str.charAt(0).toUpperCase() + str.slice(1)
+        }
+        return name
+    }
+
+
+
     render() {
         const displayMoves = () => {
             let moveDisplay = []
-            if (!this.state.movesChosen) {
+            if (!this.state.movesChosen && this.state.isLoaded) {
                 for (let i = 1; i < 5; i++) {
                     moveDisplay.push(
                         <div key={`move-${i}`} className='move'>
@@ -70,10 +90,11 @@ class TeamMemberInfo extends Component {
             } else {
                 moveDisplay = moves
             }
+            setTimeout(() => { console.log('Wait, bitch') }, 500)
             return moveDisplay
         }
         const moves = this.state.chosenMoves.map(move => (
-            <Move name={move} />
+            <Move name={move} fixName={this.fixName} />
         ))
         const types = this.state.types.map(type => (
             <Type id={type.type.name} type={type.type.name} key={type.type.name} />
@@ -95,10 +116,11 @@ class TeamMemberInfo extends Component {
                             <div className='movesetButton'>
                                 <button className='clearTeam cTButton' onClick={this.addingHandler}>Set Moveset</button>
                             </div>
+
                         </ul>
                     </div>
-                    <div>
-                        {this.state.addingMoves ? [<Background />, <MoveModalForm moves={this.state.moves} getMoves={this.getSelectedMoves} cancel={this.modalCancel} id={this.props.id} />] : null}
+                    <div key='moves'>
+                        {this.state.addingMoves ? [<Background key='background' />, <MoveModalForm key='modalForm' moves={this.state.moves} getMoves={this.getSelectedMoves} cancel={this.modalCancel} id={this.props.id} fixName={this.fixName} />] : null}
                     </div>
                 </div>
             </div>

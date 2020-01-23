@@ -8,17 +8,16 @@ import './styles/responsive.css'
 
 //TODO Fix Responsiveness (Fix pokeTeam Buttons )
 
-//TODO Look through API to get moves, abilities, natures, etc  https://pokeapi.co/api/v2/pokemon/3/
-
-//TODO Make it so the 'your team' and pokemon logo is hidden when user scrolls 
-
+//const myContext = React.createContext();
 
 class App extends Component {
   state = {
-    team: []
+    team: [],
+    selectedMoveSet: []
   }
 
   getTeam = (userTeam) => {
+    //! using the function inside the setState as an argument allows us to call a function after state is set (use instead of async)
     this.setState({
       team: userTeam
     }, this.syncLocalStorage)
@@ -29,6 +28,12 @@ class App extends Component {
       'savedTeam',
       JSON.stringify(this.state.team)
     )
+  }
+
+  getSelectedMoves = (moves) => {
+    this.setState({
+      selectedMoveSet: [...this.state.selectedMoveSet, moves]
+    })
   }
 
   deleteTeam = () => {
@@ -45,7 +50,7 @@ class App extends Component {
         <div>
           <Navbar />
           <Switch>
-            <Route exact path='/' render={() => <h1>Pokemon Builder</h1>} />
+            <Route exact path='/' render={() => <Builder saveTeam={this.getTeam} />} />
             <Route exact path='/builder' render={() => <Builder saveTeam={this.getTeam} />} />
             <Route exact path='/my-team' render={() => <SavedTeam team={this.state.team} deleteTeam={this.deleteTeam} />} />
           </Switch>

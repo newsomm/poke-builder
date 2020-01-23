@@ -1,28 +1,27 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import Type from '../team-builder/Type'
+import Type from '../general/Type'
 import '../../styles/Move.css'
-
-
-//TODO Figure out the move api and use it per move call to get data 
-
-//* API Call listed at thus address https://pokeapi.co/api/v2/move/33/
+import Loader from '../general/Loader'
 
 class Move extends Component {
     state = {
         name: '',
         power: '',
         type: '',
-        pp: ''
+        pp: '',
+        isLoaded: false
     }
     getMoveData = async () => {
         const move = await axios.get(`https://pokeapi.co/api/v2/move/${this.props.name}/`)
         const { name, power, pp, type } = move.data
+
         this.setState({
             name: name,
             power: power,
             type: type.name,
-            pp: pp
+            pp: pp,
+            isLoaded: true
         })
     }
 
@@ -32,14 +31,21 @@ class Move extends Component {
 
     render() {
         const { name, pp, type } = this.state
-        const captital = name.charAt(0).toUpperCase() + name.slice(1)
+        const fixedName = this.props.fixName(name)
         return (
             <div className='move'>
-                <h1>{captital}</h1>
-                <div className='typePP'>
-                    <Type type={type} />
-                    <h1>PP  {pp}/{pp}</h1>
-                </div>
+                {this.state.isLoaded ? (
+                    <div>
+                        <h1>{fixedName}</h1>
+                        <div className='typePP'>
+                            <Type type={type} />
+                            <h1>PP  {pp}/{pp}</h1>
+                        </div>
+                    </div>
+                ) :
+                    <Loader height='16px' width='16px' />
+                }
+
             </div>
         )
     }

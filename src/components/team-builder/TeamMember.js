@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import Type from './Type'
+import Type from '../general/Type'
 import '../../styles/TeamMember.css'
 
 
