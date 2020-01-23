@@ -23,8 +23,18 @@ class MoveModalForm extends Component {
         const { move1, move2, move3, move4 } = this.state
         await this.setState({
             chosenMoves: [move1, move2, move3, move4]
+        }, () => {
+            const checkIfArrayIsUnique = (myArray) => {
+                return myArray.length === new Set(myArray).size;
+            }
+            const { chosenMoves } = this.state
+            if (checkIfArrayIsUnique(chosenMoves)) {
+                this.props.getMoves(this.state.chosenMoves)
+            } else {
+                alert('All Moves Must Be Unique')
+            }
         })
-        this.props.getMoves(this.state.chosenMoves)
+
     }
 
     handleCancel = () => {
@@ -66,8 +76,8 @@ class MoveModalForm extends Component {
                                 {moveSelect}
                             </select>
                         </div>
-                        <button className='clearTeam modalButtons' type='submit'>Save</button>
                         <button className='clearTeam modalButtons' onClick={this.handleCancel}>Cancel</button>
+                        <button className='clearTeam modalButtons' type='submit'>Save</button>
                     </form>
                 </div>
             </div>

@@ -7,8 +7,6 @@ import Background from '../general/Background'
 import Move from './Move'
 import Loader from '../general/Loader'
 
-
-
 //! Team Member will be the primary parent that makes API calls and sends it to the child components to handle the info
 
 class TeamMemberInfo extends Component {
@@ -75,7 +73,7 @@ class TeamMemberInfo extends Component {
     render() {
         const displayMoves = () => {
             let moveDisplay = []
-            if (!this.state.movesChosen && this.state.isLoaded) {
+            if (!this.state.movesChosen) {
                 for (let i = 1; i < 5; i++) {
                     moveDisplay.push(
                         <div key={`move-${i}`} className='move'>
@@ -90,7 +88,6 @@ class TeamMemberInfo extends Component {
             } else {
                 moveDisplay = moves
             }
-            setTimeout(() => { console.log('Wait, bitch') }, 500)
             return moveDisplay
         }
         const moves = this.state.chosenMoves.map(move => (
@@ -101,29 +98,36 @@ class TeamMemberInfo extends Component {
         ))
         return (
             <div>
-                <div key={this.props.id} className='teamMemberInfo'>
+                {this.state.isLoaded ? (
                     <div>
-                        <p>No. {this.props.id}</p>
-                        <img className='savedTeamImg' alt={this.props.name} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.props.id}.png`}></img>
-                        <h3>{this.props.name}</h3>
-                        <div className='savedTypeList'>
-                            {types}
+                        <div key={this.props.id} className='teamMemberInfo'>
+                            <div>
+                                <p>No. {this.props.id}</p>
+                                <img className='savedTeamImg' alt={this.props.name} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.props.id}.png`}></img>
+                                <h3>{this.props.name}</h3>
+                                <div className='savedTypeList'>
+                                    {types}
+                                </div>
+                            </div>
+                            <div>
+                                <ul className='moveList'>
+                                    {displayMoves()}
+                                    <div className='movesetButton'>
+                                        <button className='clearTeam cTButton' onClick={this.addingHandler}>Set Moveset</button>
+                                    </div>
+
+                                </ul>
+                            </div>
+                            <div key='moves'>
+                                {this.state.addingMoves ? [<Background key='background' />, <MoveModalForm key='modalForm' moves={this.state.moves} getMoves={this.getSelectedMoves} cancel={this.modalCancel} id={this.props.id} fixName={this.fixName} />] : null}
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <ul className='moveList'>
-                            {displayMoves()}
-                            <div className='movesetButton'>
-                                <button className='clearTeam cTButton' onClick={this.addingHandler}>Set Moveset</button>
-                            </div>
-
-                        </ul>
-                    </div>
-                    <div key='moves'>
-                        {this.state.addingMoves ? [<Background key='background' />, <MoveModalForm key='modalForm' moves={this.state.moves} getMoves={this.getSelectedMoves} cancel={this.modalCancel} id={this.props.id} fixName={this.fixName} />] : null}
-                    </div>
-                </div>
+                ) :
+                    <Loader />
+                }
             </div>
+
 
         )
     }

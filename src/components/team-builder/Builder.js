@@ -80,8 +80,6 @@ class Builder extends Component {
         }
     }
 
-    //! Use this somehow to save data for pokemon moveset
-
     addToTeam = (name, id) => {
         const { pokeTeam, idFound } = this.state
         const pokeData = {
