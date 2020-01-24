@@ -7,8 +7,12 @@ import './styles/App.css';
 import './styles/responsive.css'
 
 //TODO Fix Responsiveness (Fix pokeTeam Buttons )
+//TODO Save moves to local
+//TODO Editing Moves (forms loaded )
+//TODO editing teams 
+//TODO search by name 
 
-//const myContext = React.createContext();
+//*Possible Feature: Make multiple teams 
 
 class App extends Component {
   state = {

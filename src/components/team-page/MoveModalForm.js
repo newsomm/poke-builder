@@ -24,17 +24,21 @@ class MoveModalForm extends Component {
         await this.setState({
             chosenMoves: [move1, move2, move3, move4]
         }, () => {
-            const checkIfArrayIsUnique = (myArray) => {
-                return myArray.length === new Set(myArray).size;
-            }
             const { chosenMoves } = this.state
-            if (checkIfArrayIsUnique(chosenMoves)) {
-                this.props.getMoves(this.state.chosenMoves)
+            if (chosenMoves.every(move => move !== '')) {
+                const checkIfArrayIsUnique = (myArray) => {
+                    return myArray.length === new Set(myArray).size;
+                }
+
+                if (checkIfArrayIsUnique(chosenMoves)) {
+                    this.props.getMoves(this.state.chosenMoves)
+                } else {
+                    alert('All Moves Must Be Unique')
+                }
             } else {
-                alert('All Moves Must Be Unique')
+                alert('Must Select Four Moves')
             }
         })
-
     }
 
     handleCancel = () => {
@@ -60,19 +64,19 @@ class MoveModalForm extends Component {
                         </div>
                         <div className='moveSelectForm'>
                             <select className='moveSelect' value={this.state.move2} name='move2' onChange={this.handleChange}>
-                                <option>Select Move</option>
+                                <option value=''>Select Move</option>
                                 {moveSelect}
                             </select>
                         </div>
                         <div className='moveSelectForm'>
                             <select className='moveSelect' value={this.state.move3} name='move3' onChange={this.handleChange}>
-                                <option>Select Move</option>
+                                <option value=''>Select Move</option>
                                 {moveSelect}
                             </select>
                         </div>
                         <div className='moveSelectForm'>
                             <select className='moveSelect' value={this.state.move4} name='move4' onChange={this.handleChange}>
-                                <option>Select Move</option>
+                                <option value=''>Select Move</option>
                                 {moveSelect}
                             </select>
                         </div>

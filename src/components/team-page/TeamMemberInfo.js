@@ -91,7 +91,7 @@ class TeamMemberInfo extends Component {
             return moveDisplay
         }
         const moves = this.state.chosenMoves.map(move => (
-            <Move name={move} fixName={this.fixName} />
+            <Move name={move} fixName={this.fixName} key={move} />
         ))
         const types = this.state.types.map(type => (
             <Type id={type.type.name} type={type.type.name} key={type.type.name} />
@@ -113,7 +113,7 @@ class TeamMemberInfo extends Component {
                                 <ul className='moveList'>
                                     {displayMoves()}
                                     <div className='movesetButton'>
-                                        <button className='clearTeam cTButton' onClick={this.addingHandler}>Set Moveset</button>
+                                        <button className='clearTeam cTButton' onClick={this.addingHandler}>Edit Moveset</button>
                                     </div>
 
                                 </ul>

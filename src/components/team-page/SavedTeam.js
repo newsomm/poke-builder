@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom'
 import '../../styles/SavedTeam.css'
 
 //* DONE      Figure out how to rerender on click for 'clear team'
-//TODO      Work out the move picking functionality?
 //*DONE     Make the 'make a team button' route to the builder page (FIXED BY 'forceUpdate()')
-//TODO       
 
 class SavedTeam extends Component {
     handleDelete = async () => {
