@@ -7,7 +7,7 @@ import './styles/App.css';
 import './styles/responsive.css'
 
 //TODO Fix Responsiveness (Fix pokeTeam Buttons )
-//TODO Save moves to local
+//TODO ***Save moves to local*** prop drilling or context API
 //TODO Editing Moves (forms loaded )
 //TODO editing teams 
 //TODO search by name 
@@ -34,7 +34,7 @@ class App extends Component {
     )
   }
 
-  getSelectedMoves = (moves) => {
+  getSelectedMoves = (name, moves) => {
     this.setState({
       selectedMoveSet: [...this.state.selectedMoveSet, moves]
     })
@@ -56,7 +56,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' render={() => <Builder saveTeam={this.getTeam} />} />
             <Route exact path='/builder' render={() => <Builder saveTeam={this.getTeam} />} />
-            <Route exact path='/my-team' render={() => <SavedTeam team={this.state.team} deleteTeam={this.deleteTeam} />} />
+            <Route exact path='/my-team' render={() => <SavedTeam team={this.state.team} deleteTeam={this.deleteTeam} getMoves={this.getSelectedMoves} />} />
           </Switch>
         </div>
       </Route>

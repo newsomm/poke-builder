@@ -45,7 +45,7 @@ class Type extends Component {
         } else if (type === 'ice') {
             color = '#03f0fc'
         } else if (type === 'normal') {
-            color = '#dbdbdb'
+            color = '#b0b0b0'
         } else if (type === 'poison') {
             color = '#7024a3'
         } else if (type === 'psychic') {

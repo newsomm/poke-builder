@@ -25,7 +25,7 @@ class SavedTeam extends Component {
         } else {
             const savedTeam = JSON.parse(window.localStorage.getItem('savedTeam'))
             const team = savedTeam.map(member => (
-                <TeamMemberInfo id={member.id} name={member.name} key={member.id} />
+                <TeamMemberInfo id={member.id} name={member.name} key={member.id} getMoves={this.props.getMoves} />
             ))
             return (
                 <div className='SavedTeam'>

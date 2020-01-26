@@ -13,6 +13,7 @@ class TeamMemberInfo extends Component {
     state = {
         moves: [],
         types: [],
+        name: '',
         addingMoves: false,
         chosenMoves: [],
         movesChosen: false,
@@ -26,9 +27,10 @@ class TeamMemberInfo extends Component {
     getIndividualData = async () => {
         //! Will change to pass in props as url params 
         const pokeData = await axios.get(`https://pokeapi.co/api/v2/pokemon/${this.props.id}/`)
-        const { moves, types } = pokeData.data
+        const { moves, name, types } = pokeData.data
         this.setState({
             moves: moves,
+            name: name,
             types: types,
             isLoaded: true
         })
