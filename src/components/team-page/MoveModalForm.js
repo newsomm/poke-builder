@@ -32,6 +32,7 @@ class MoveModalForm extends Component {
 
                 if (checkIfArrayIsUnique(chosenMoves)) {
                     this.props.getMoves(this.state.chosenMoves)
+                    this.props.syncMoves(this.props.pokeName, this.state.chosenMoves)
                 } else {
                     alert('All Moves Must Be Unique')
                 }

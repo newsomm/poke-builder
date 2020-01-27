@@ -36,6 +36,8 @@ class TeamMemberInfo extends Component {
         })
     }
 
+
+
     getSelectedMoves = moves => {
         this.setState({
             chosenMoves: moves,
@@ -71,11 +73,12 @@ class TeamMemberInfo extends Component {
     }
 
 
+    //! Something about if no local, set to null?
 
     render() {
         const displayMoves = () => {
             let moveDisplay = []
-            if (!this.state.movesChosen) {
+            if (localStorage.getItem(this.state.name) === null) {
                 for (let i = 1; i < 5; i++) {
                     moveDisplay.push(
                         <div key={`move-${i}`} className='move'>
@@ -88,13 +91,16 @@ class TeamMemberInfo extends Component {
                     )
                 }
             } else {
+                const savedMoves = JSON.parse(window.localStorage.getItem(this.state.name))
+                console.log(savedMoves)
+                const moves = savedMoves.map(move => (
+                    <Move name={move} fixName={this.fixName} key={move} />
+                ))
                 moveDisplay = moves
             }
             return moveDisplay
         }
-        const moves = this.state.chosenMoves.map(move => (
-            <Move name={move} fixName={this.fixName} key={move} />
-        ))
+
         const types = this.state.types.map(type => (
             <Type id={type.type.name} type={type.type.name} key={type.type.name} />
         ))
@@ -117,11 +123,10 @@ class TeamMemberInfo extends Component {
                                     <div className='movesetButton'>
                                         <button className='clearTeam cTButton' onClick={this.addingHandler}>Edit Moveset</button>
                                     </div>
-
                                 </ul>
                             </div>
                             <div key='moves'>
-                                {this.state.addingMoves ? [<Background key='background' />, <MoveModalForm key='modalForm' moves={this.state.moves} getMoves={this.getSelectedMoves} cancel={this.modalCancel} id={this.props.id} fixName={this.fixName} />] : null}
+                                {this.state.addingMoves ? [<Background key='background' />, <MoveModalForm pokeName={this.state.name} key='modalForm' moves={this.state.moves} syncMoves={this.props.getMoves} getMoves={this.getSelectedMoves} cancel={this.modalCancel} id={this.props.id} fixName={this.fixName} />] : null}
                             </div>
                         </div>
                     </div>

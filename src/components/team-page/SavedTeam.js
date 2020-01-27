@@ -3,8 +3,8 @@ import TeamMemberInfo from './TeamMemberInfo'
 import { Link } from 'react-router-dom'
 import '../../styles/SavedTeam.css'
 
-//* DONE      Figure out how to rerender on click for 'clear team'
-//*DONE     Make the 'make a team button' route to the builder page (FIXED BY 'forceUpdate()')
+//* DONE      Figure out how to rerender on click for 'clear team' (FIXED BY 'forceUpdate()')
+//*DONE     Make the 'make a team button' route to the builder page
 
 class SavedTeam extends Component {
     handleDelete = async () => {

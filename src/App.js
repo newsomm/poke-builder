@@ -7,7 +7,6 @@ import './styles/App.css';
 import './styles/responsive.css'
 
 //TODO Fix Responsiveness (Fix pokeTeam Buttons )
-//TODO ***Save moves to local*** prop drilling or context API
 //TODO Editing Moves (forms loaded )
 //TODO editing teams 
 //TODO search by name 
@@ -34,10 +33,12 @@ class App extends Component {
     )
   }
 
+
+  //TODO **************
   getSelectedMoves = (name, moves) => {
-    this.setState({
-      selectedMoveSet: [...this.state.selectedMoveSet, moves]
-    })
+      window.localStorage.setItem(
+        `${name}`,
+        JSON.stringify(moves))
   }
 
   deleteTeam = () => {
