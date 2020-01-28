@@ -8,7 +8,6 @@ import './styles/responsive.css'
 
 //TODO Fix Responsiveness (Fix pokeTeam Buttons )
 //TODO Editing Moves (forms loaded )
-//TODO editing teams 
 //TODO search by name 
 
 //*Possible Feature: Make multiple teams 
@@ -16,7 +15,8 @@ import './styles/responsive.css'
 class App extends Component {
   state = {
     team: [],
-    selectedMoveSet: []
+    selectedMoveSet: [],
+    editingTeam: false
   }
 
   getTeam = (userTeam) => {
@@ -34,18 +34,24 @@ class App extends Component {
   }
 
 
-  //TODO **************
+  editTeam = () => {
+    this.setState({
+      editingTeam: true
+    })
+  }
+
   getSelectedMoves = (name, moves) => {
-      window.localStorage.setItem(
-        `${name}`,
-        JSON.stringify(moves))
+    window.localStorage.setItem(
+      `${name}`,
+      JSON.stringify(moves))
   }
 
   deleteTeam = () => {
     this.setState({
-      team: []
+      team: [],
+      editingTeam: false
     }, () => {
-      window.localStorage.removeItem('savedTeam')
+      window.localStorage.clear()
     })
   }
 
@@ -56,8 +62,8 @@ class App extends Component {
           <Navbar />
           <Switch>
             <Route exact path='/' render={() => <Builder saveTeam={this.getTeam} />} />
-            <Route exact path='/builder' render={() => <Builder saveTeam={this.getTeam} />} />
-            <Route exact path='/my-team' render={() => <SavedTeam team={this.state.team} deleteTeam={this.deleteTeam} getMoves={this.getSelectedMoves} />} />
+            <Route exact path='/builder' render={() => <Builder saveTeam={this.getTeam} userTeam={this.state.editingTeam ? JSON.parse(window.localStorage.getItem('savedTeam')) : ''} />} />
+            <Route exact path='/my-team' render={() => <SavedTeam team={this.state.team} editTeam={this.editTeam} deleteTeam={this.deleteTeam} getMoves={this.getSelectedMoves} />} />
           </Switch>
         </div>
       </Route>

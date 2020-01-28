@@ -7,7 +7,9 @@ import Background from '../general/Background'
 import Move from './Move'
 import Loader from '../general/Loader'
 
-//! Team Member will be the primary parent that makes API calls and sends it to the child components to handle the info
+
+//TODO      Make it so the delete also deletes the local storage shit
+
 
 class TeamMemberInfo extends Component {
     state = {

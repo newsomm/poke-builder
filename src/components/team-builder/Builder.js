@@ -16,6 +16,16 @@ class Builder extends Component {
         toSavedTeam: false
     }
 
+    componentDidMount() {
+        this.getPokermans();
+        window.addEventListener('scroll', this.handleScroll)
+        if (this.props.userTeam !== '') {
+            this.setState({
+                pokeTeam: this.props.userTeam
+            })
+        }
+    }
+
     getPokermans = async () => {
         const url = `https://pokeapi.co/api/v2/pokedex/national/`
         const pokemon = await axios.get(url)
@@ -44,12 +54,6 @@ class Builder extends Component {
         this.setState({
             regionalList: [...pokeData]
         })
-    }
-
-
-    componentDidMount() {
-        this.getPokermans();
-        window.addEventListener('scroll', this.handleScroll)
     }
 
     componentWillUnmount() {
@@ -128,8 +132,8 @@ class Builder extends Component {
                 <div className={this.state.scrolled ? 'fullTeamFixed' : 'fullTeam'}>
                     <PokeTeam pokeTeam={this.state.pokeTeam} remove={this.removeFromTeam} scrolled={this.state.scrolled} />
                     <div className='teamButtons'>
-                        <button onClick={this.handleSave} className='clearTeam'>Save Team</button>
                         <button onClick={this.clearTeam} className='clearTeam'>Clear Team</button>
+                        <button onClick={this.handleSave} className='clearTeam'>Save Team</button>
                     </div>
                 </div>
                 <PokeGrid scrolled={this.state.scrolled ? 'gridComponentFixed' : 'gridComponent'} addToTeam={this.addToTeam} pokeGrid={this.state.regionalList} getRegion={this.getRegion} regionPokemon={this.regionPokemon} />

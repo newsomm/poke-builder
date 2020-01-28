@@ -3,13 +3,14 @@ import TeamMemberInfo from './TeamMemberInfo'
 import { Link } from 'react-router-dom'
 import '../../styles/SavedTeam.css'
 
-//* DONE      Figure out how to rerender on click for 'clear team' (FIXED BY 'forceUpdate()')
-//*DONE     Make the 'make a team button' route to the builder page
-
 class SavedTeam extends Component {
     handleDelete = async () => {
         await this.props.deleteTeam()
         this.forceUpdate()
+    }
+
+    handleEdit = () => {
+        this.props.editTeam()
     }
 
     render() {
@@ -30,6 +31,10 @@ class SavedTeam extends Component {
             return (
                 <div className='SavedTeam'>
                     <button onClick={this.handleDelete} className='clearTeam'>Delete Team</button>
+                    <Link to='/builder'>
+                        <button onClick={this.handleEdit} className='clearTeam'>Edit Team</button>
+                    </Link>
+
                     <div className='savedTeamContainer'>
                         {team}
                     </div>
