@@ -20,7 +20,6 @@ class App extends Component {
   }
 
   getTeam = (userTeam) => {
-    //! using the function inside the setState as an argument allows us to call a function after state is set (use instead of async)
     this.setState({
       team: userTeam
     }, this.syncLocalStorage)
@@ -61,7 +60,6 @@ class App extends Component {
         <div>
           <Navbar />
           <Switch>
-            <Route exact path='/' render={() => <Builder saveTeam={this.getTeam} />} />
             <Route exact path='/builder' render={() => <Builder saveTeam={this.getTeam} userTeam={this.state.editingTeam ? JSON.parse(window.localStorage.getItem('savedTeam')) : ''} />} />
             <Route exact path='/my-team' render={() => <SavedTeam team={this.state.team} editTeam={this.editTeam} deleteTeam={this.deleteTeam} getMoves={this.getSelectedMoves} />} />
           </Switch>

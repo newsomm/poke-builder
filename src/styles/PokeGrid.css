@@ -2,6 +2,7 @@
     margin-top: 37vh
 }
 .pokeGrid{
+    overflow: hidden;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     justify-content: space-between;

@@ -1,5 +1,6 @@
 .SavedTeam{
 height: 100vh;
+overflow: hidden;
 }
 .savedTeamContainer{
     width: 75%;
@@ -15,4 +16,60 @@ height: 100vh;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+}
+
+.editTeam{
+    margin: 0em;
+}
+
+.deleteButton{
+    background: red;
+    color: white;
+    border: 1px solid red;
+    margin: 0;
+}
+
+.deleteButton:hover{
+    border: 1px solid red;
+    color:red;
+    background: white;
+}
+
+
+.savedTeamButtons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    margin: 2vh auto;
+    width: 15%;
+}
+
+@media only screen and (max-width:650px) {
+    .savedTeamContainer{
+        max-width: 100%;
+        width: 55%;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        margin: 1vh auto 0 auto; 
+    }
+    .move{
+        margin: 2px;
+        font-size: 6px;
+        color: white;
+        padding: 10px;
+        width: 100px;
+        border-radius: 40px;
+        background: linear-gradient(123deg, rgba(49,62,83,1) 50%, rgba(58,71,90,1) 50%);
+        border: 1px solid rgb(182, 171, 171);
+    }
+    
+    .typePP{
+        width: 100px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+
 }

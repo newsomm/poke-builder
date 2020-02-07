@@ -30,10 +30,13 @@ class SavedTeam extends Component {
             ))
             return (
                 <div className='SavedTeam'>
-                    <button onClick={this.handleDelete} className='clearTeam'>Delete Team</button>
-                    <Link to='/builder'>
-                        <button onClick={this.handleEdit} className='clearTeam'>Edit Team</button>
-                    </Link>
+                    <div className='savedTeamButtons'>
+                        <button onClick={this.handleDelete} className='clearTeam deleteButton'>Delete Team</button>
+                        <Link to='/builder'>
+                            <button onClick={this.handleEdit} className='clearTeam editTeam'>Edit Team</button>
+                        </Link>
+                    </div>
+
 
                     <div className='savedTeamContainer'>
                         {team}

@@ -1,13 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class Background extends Component {
-    render() {
-        return (
-            <div className='modalBackground'>
-
-            </div>
-        )
-    }
-}
+const Background = props => (<div className='modalBackground' onClick={props.cancel}>
+</div>)
 
 export default Background

@@ -3,16 +3,20 @@
     border-radius: 10px;
     color: white;
     margin: 10px;
-    padding: 20px;
+    padding: 15px;
     background: rgb(49,62,83);
     background: linear-gradient(123deg, rgba(49,62,83,1) 50%, rgba(58,71,90,1) 50%);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+}
+
+.loaderBox{
+    padding: 70px;
 }
 
 .savedTeamImg{
-    width: 160px;
-    margin: 18px;
+    width: 140px;
+    margin: 30px;
 }
 
 .moveList{
@@ -36,4 +40,23 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     width: 50%;
+}
+
+@media (max-width:640px) {
+    .teamMemberInfo{
+        font-family: 'Press Start 2P', cursive;
+        border-radius: 10px;
+        color: white;
+        margin: 10px;
+        padding: 15px;
+        background: rgb(49,62,83);
+        background: linear-gradient(123deg, rgba(49,62,83,1) 50%, rgba(58,71,90,1) 50%);
+        display: flex;
+        justify-content: space-around;
+    }
+    .savedTeamImg{
+        width: 100px;
+        margin: 40px;
+    }
+
 }

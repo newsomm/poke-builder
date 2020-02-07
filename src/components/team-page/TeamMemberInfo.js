@@ -7,10 +7,6 @@ import Background from '../general/Background'
 import Move from './Move'
 import Loader from '../general/Loader'
 
-
-//TODO      Make it so the delete also deletes the local storage shit
-
-
 class TeamMemberInfo extends Component {
     state = {
         moves: [],
@@ -27,7 +23,6 @@ class TeamMemberInfo extends Component {
     }
 
     getIndividualData = async () => {
-        //! Will change to pass in props as url params 
         const pokeData = await axios.get(`https://pokeapi.co/api/v2/pokemon/${this.props.id}/`)
         const { moves, name, types } = pokeData.data
         this.setState({
@@ -37,8 +32,6 @@ class TeamMemberInfo extends Component {
             isLoaded: true
         })
     }
-
-
 
     getSelectedMoves = moves => {
         this.setState({
@@ -74,9 +67,6 @@ class TeamMemberInfo extends Component {
         return name
     }
 
-
-    //! Something about if no local, set to null?
-
     render() {
         const displayMoves = () => {
             let moveDisplay = []
@@ -94,7 +84,6 @@ class TeamMemberInfo extends Component {
                 }
             } else {
                 const savedMoves = JSON.parse(window.localStorage.getItem(this.state.name))
-                console.log(savedMoves)
                 const moves = savedMoves.map(move => (
                     <Move name={move} fixName={this.fixName} key={move} />
                 ))
@@ -128,16 +117,18 @@ class TeamMemberInfo extends Component {
                                 </ul>
                             </div>
                             <div key='moves'>
-                                {this.state.addingMoves ? [<Background key='background' />, <MoveModalForm pokeName={this.state.name} key='modalForm' moves={this.state.moves} syncMoves={this.props.getMoves} getMoves={this.getSelectedMoves} cancel={this.modalCancel} id={this.props.id} fixName={this.fixName} />] : null}
+                                {this.state.addingMoves ? [<Background cancel={this.modalCancel} key='background' />, <MoveModalForm pokeName={this.state.name} key='modalForm' moves={this.state.moves} syncMoves={this.props.getMoves} getMoves={this.getSelectedMoves} cancel={this.modalCancel} id={this.props.id} fixName={this.fixName} />] : null}
                             </div>
                         </div>
                     </div>
                 ) :
-                    <Loader />
+                    (
+                        <div className='teamMemberInfo loaderBox'>
+                            <Loader />
+                        </div>
+                    )
                 }
             </div>
-
-
         )
     }
 }

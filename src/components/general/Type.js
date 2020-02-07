@@ -1,71 +1,73 @@
-import React, { Component } from 'react'
+import React from 'react'
 import '../../styles/Types.css'
 import uuid from 'uuid'
 
-class Type extends Component {
-    state = {
-        color: ''
-    }
-    componentDidMount() {
-        this.typeColor(this.props.type)
-    }
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.type !== this.props.type) {
-            this.typeColor(this.props.type)
-        }
-    }
-
-    typeColor = (type) => {
-        let color;
-        if (type === 'fire') {
+const type = (props) => {
+    let color;
+    switch (props.type) {
+        case ('fire'):
             color = '#f72516'
-        } else if (type === 'water') {
+            break;
+        case ('water'):
             color = '#0384fc'
-        } else if (type === 'bug') {
+            break;
+        case ('bug'):
             color = '#94b842'
-        } else if (type === 'dark') {
+            break;
+        case ('dark'):
             color = '#544a32'
-        } else if (type === 'dragon') {
+            break;
+        case ('dragon'):
             color = '#4547ba'
-        } else if (type === 'electric') {
+            break;
+        case ('electric'):
             color = '#ffd817'
-        } else if (type === 'fairy') {
+            break;
+        case ('fairy'):
             color = '#ffb0df'
-        } else if (type === 'fighting') {
+            break;
+        case ('fighting'):
             color = '#702d00'
-        } else if (type === 'flying') {
+            break;
+        case ('flying'):
             color = '#54a1ff'
-        } else if (type === 'ghost') {
+            break;
+        case ('ghost'):
             color = '#473da1'
-        } else if (type === 'grass') {
+            break;
+        case ('grass'):
             color = '#05b53a'
-        } else if (type === 'ground') {
+            break;
+        case ('ground'):
             color = '#a19064'
-        } else if (type === 'ice') {
+            break;
+        case ('ice'):
             color = '#03f0fc'
-        } else if (type === 'normal') {
+            break;
+        case ('normal'):
             color = '#b0b0b0'
-        } else if (type === 'poison') {
+            break;
+        case ('poison'):
             color = '#7024a3'
-        } else if (type === 'psychic') {
+            break;
+        case ('psychic'):
             color = '#ff40b9'
-        } else if (type === 'rock') {
+            break
+        case ('rock'):
             color = '#c7c679'
-        } else if (type === 'steel') {
+            break;
+        case ('steel'):
             color = '#8c8c8c'
-        }
-        this.setState({
-            color: color
-        })
+            break;
+        default:
+            color = '#b0b0b0'
+            break;
     }
-    render() {
-        return (
-            <div>
-                <li key={uuid()} className='type' style={{ backgroundColor: `${this.state.color}` }}>{this.props.type.toUpperCase()}</li>
-            </div>
-        )
-    }
+    return (
+        <div>
+            <li key={uuid()} className='type' style={{ backgroundColor: `${color}` }}>{props.type.toUpperCase()}</li>
+        </div>
+    )
 }
 
-export default Type
+export default type
