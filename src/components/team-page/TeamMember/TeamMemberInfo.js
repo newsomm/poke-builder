@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import '../../styles/TeamMemberInfo.css'
-import Type from '../general/Type'
-import MoveModalForm from './MoveModalForm'
-import Background from '../general/Background'
-import Move from './Move'
-import Loader from '../general/Loader'
+import Type from '../../general/Type/Type'
+import MoveModalForm from './MoveModal/MoveModalForm'
+import Background from '../../general/Background/Background'
+import Move from './Move/Move'
+import Loader from '../../general/Loader/Loader'
+import './TeamMemberInfo.css'
 
 class TeamMemberInfo extends Component {
     state = {
@@ -117,7 +117,8 @@ class TeamMemberInfo extends Component {
                                 </ul>
                             </div>
                             <div key='moves'>
-                                {this.state.addingMoves ? [<Background cancel={this.modalCancel} key='background' />, <MoveModalForm pokeName={this.state.name} key='modalForm' moves={this.state.moves} syncMoves={this.props.getMoves} getMoves={this.getSelectedMoves} cancel={this.modalCancel} id={this.props.id} fixName={this.fixName} />] : null}
+                                {this.state.addingMoves ? [<Background cancel
+                                    ={this.modalCancel} key='background' />, <MoveModalForm pokeName={this.state.name} key='modalForm' moves={this.state.moves} syncMoves={this.props.getMoves} getMoves={this.getSelectedMoves} cancel={this.modalCancel} id={this.props.id} fixName={this.fixName} />] : null}
                             </div>
                         </div>
                     </div>

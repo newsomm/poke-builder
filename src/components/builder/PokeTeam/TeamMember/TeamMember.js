@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import Type from '../general/Type'
-import '../../styles/TeamMember.css'
+import Type from '../../../general/Type/Type'
+import './TeamMember.css'
 
 
 class TeamMember extends Component {

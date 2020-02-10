@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import TeamMemberInfo from './TeamMemberInfo'
+import TeamMemberInfo from './TeamMember/TeamMemberInfo'
 import { Link } from 'react-router-dom'
-import '../../styles/SavedTeam.css'
+import './SavedTeam.css'
 
 class SavedTeam extends Component {
     handleDelete = async () => {

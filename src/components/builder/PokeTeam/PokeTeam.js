@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import uuid from 'uuid'
-import '../../styles/PokeTeam.css'
-import TeamMember from './TeamMember'
+import './PokeTeam.css'
+import TeamMember from './TeamMember/TeamMember'
 
 
 class PokeTeam extends PureComponent {
@@ -11,10 +11,6 @@ class PokeTeam extends PureComponent {
 
     handleClear = () => {
         this.props.clearTeam()
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
     }
 
     render() {

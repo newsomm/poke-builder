@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../../styles/MoveModalForm.css'
+import './MoveModalForm.css'
 
 class MoveModalForm extends Component {
     //! I am aware this is terribly handled, but I didnt know how to do it without hardcoding the individual values, then puttin them into an array  

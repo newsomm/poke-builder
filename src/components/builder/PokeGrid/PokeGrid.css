@@ -6,14 +6,15 @@
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     justify-content: space-between;
+    padding: 10px;
     width: 87%;
-    margin: 0 auto;
+    margin: 23px auto 0 auto;
     
 }
 .regionSelect{
     width: 10%;
     padding: 10px;
-    margin: 40px auto 20px auto;
+    margin: 40px auto 30px auto;
     align-items: center;
     text-align: center;
 }
@@ -61,5 +62,14 @@
         margin: 40px auto 20px auto;
         align-items: center;
         text-align: center;
+    }
+  }
+  
+  
+  @media only screen and (max-width:600px) {
+    .pokeGrid{
+        grid-template-columns: repeat(2, 2fr);
+        width: 80%;
+        margin: 0 auto;
     }
   }

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-import PokeTeam from './PokeTeam'
-import PokeGrid from './PokeGrid'
-import '../../styles/Builder.css'
+import PokeTeam from './PokeTeam/PokeTeam'
+import PokeGrid from './PokeGrid/PokeGrid'
+import './Builder.css'
 
 class Builder extends Component {
     state = {
@@ -54,10 +54,6 @@ class Builder extends Component {
         this.setState({
             regionalList: [...pokeData]
         })
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
     }
 
     handleSave = () => {

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import PokeCard from './PokeCard'
-import '../../styles/PokeGrid.css'
+import PokeCard from '../../general/PokeCard/PokeCard'
+import './PokeGrid.css'
 
 class PokeGrid extends PureComponent {
     state = {

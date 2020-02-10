@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import Type from '../general/Type'
-import '../../styles/Move.css'
-import Loader from '../general/Loader'
+import Type from '../../../general/Type/Type'
+import Loader from '../../../general/Loader/Loader'
+import './Move.css'
 
 class Move extends Component {
     state = {

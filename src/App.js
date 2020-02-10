@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'
-import Navbar from './components/layout/Navbar'
-import Builder from './components/team-builder/Builder';
+import Navbar from './components/UI/Navbar'
+import Builder from './components/builder/Builder';
 import SavedTeam from './components/team-page/SavedTeam';
 import './styles/App.css';
-import './styles/responsive.css'
 
 //TODO Fix Responsiveness (Fix pokeTeam Buttons )
 //TODO Editing Moves (forms loaded )
@@ -22,10 +21,10 @@ class App extends Component {
   getTeam = (userTeam) => {
     this.setState({
       team: userTeam
-    }, this.syncLocalStorage)
+    }, this.syncTeamStorage)
   }
 
-  syncLocalStorage = () => {
+  syncTeamStorage = () => {
     window.localStorage.setItem(
       'savedTeam',
       JSON.stringify(this.state.team)

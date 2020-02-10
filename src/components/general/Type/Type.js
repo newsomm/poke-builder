@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../styles/Types.css'
+import './Types.css'
 import uuid from 'uuid'
 
 const type = (props) => {

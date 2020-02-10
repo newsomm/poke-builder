@@ -8,15 +8,6 @@
     transform: translate(-50%, -50%);
     border-radius: 20px;
 }
-.modalBackground{
-        height: 100vh;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: rgba(0,0,0,0.5);
-}
-
 .moveSelectForm{
     margin: 15px;
 }
