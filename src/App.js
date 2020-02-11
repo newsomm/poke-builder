@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import Navbar from './components/UI/NavBar/Navbar'
 import Builder from './components/builder/Builder';
 import SavedTeam from './components/team-page/SavedTeam';
-import './styles/App.css';
+import './App.css';
 import SideDrawer from './components/UI/SideDrawer/SideDrawer';
 
 //TODO Fix Responsiveness (Fix pokeTeam Buttons )
@@ -74,7 +74,7 @@ class App extends Component {
         <div>
           <Navbar open={this.sideDrawerOpen} />
           <Switch>
-            <Route exact path='/builder' render={() => <Builder saveTeam={this.getTeam} userTeam={this.state.editingTeam ? JSON.parse(window.localStorage.getItem('savedTeam')) : ''} />} />
+            <Route exact path='/' render={() => <Builder saveTeam={this.getTeam} userTeam={this.state.editingTeam ? JSON.parse(window.localStorage.getItem('savedTeam')) : ''} />} />
             <Route exact path='/my-team' render={() => <SavedTeam team={this.state.team} editTeam={this.editTeam} deleteTeam={this.deleteTeam} getMoves={this.getSelectedMoves} />} />
           </Switch>
           <SideDrawer close={this.sideDrawerClosed} open={this.state.showSideDrawer} />

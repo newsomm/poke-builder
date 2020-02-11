@@ -16,7 +16,7 @@ const SideDrawer = props => {
                     <img className='mainLogo drawerLogo' src="https://fontmeme.com/permalink/200113/d3dec358ccaaec9783bff84033b9b438.png" alt="pokemon-font" border="0" />
                 </div>
                 <nav>
-                    <NavLink className='navLinks' to='/builder'>Builder</NavLink>
+                    <NavLink className='navLinks' to='/'>Builder</NavLink>
                     <NavLink className='navLinks' to='/my-team'>Your Team</NavLink>
                 </nav>
             </div>

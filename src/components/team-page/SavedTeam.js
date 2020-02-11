@@ -18,7 +18,7 @@ class SavedTeam extends Component {
             return (
                 <div className='noTeam'>
                     <h1 >You don't have a saved team. Go and make one!</h1>
-                    <Link to='/builder'>
+                    <Link to='/'>
                         <button className='clearTeam'>Make Team</button>
                     </Link>
                 </div>
@@ -32,7 +32,7 @@ class SavedTeam extends Component {
                 <div className='SavedTeam'>
                     <div className='savedTeamButtons'>
                         <button onClick={this.handleDelete} className='clearTeam deleteButton'>Delete Team</button>
-                        <Link to='/builder'>
+                        <Link to='/'>
                             <button onClick={this.handleEdit} className='clearTeam editTeam'>Edit Team</button>
                         </Link>
                     </div>
