@@ -1,0 +1,37 @@
+.SideDrawer {
+    position: fixed;
+    width: 280px;
+    max-width: 70%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 110;
+    background: rgb(58, 71, 90);
+    padding: 32px 16px;
+    box-sizing: border-box;
+    transition: 0.2s;
+}
+
+.drawerLogo{
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+.SideDrawer nav {
+    display: flex;
+    flex-flow: column;
+}
+
+@media (min-width: 599px){
+    .SideDrawer{
+        display: none;
+    }
+}
+
+.Open {
+    transform: translateX(0);
+}
+
+.Close {
+    transform: translateX(-100%);
+}

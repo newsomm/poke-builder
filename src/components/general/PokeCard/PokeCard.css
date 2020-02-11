@@ -1,0 +1,88 @@
+.pokecard h1{
+    font-size: 12px;
+    color: white;
+}
+.pokecard{
+    text-align: center;
+    padding: 12%;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    background: rgb(58, 71, 90);
+    margin: 7px auto 7px auto;
+    cursor: pointer;
+}
+.pokecard:hover{
+    box-shadow: 2px 2px 12px #000000;
+    transition: 200ms;
+    
+}
+.img{
+    width: 100px;
+    height: 100px;
+}
+
+@media (max-width:501px) {
+    .pokecard{
+        text-align: center;
+        padding: 5%;
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        background: rgb(58, 71, 90);
+        margin: 0 auto 10px auto;
+    }
+    .pokecard h1{
+        font-size: 8px;
+        color: white;
+    }
+    .img{
+        width: 61px;
+        height: 61px;
+    }
+  }
+
+  @media (min-width:501px) and (max-width: 649px) {
+    .pokecard{
+        text-align: center;
+        padding: 19%;
+        height: 70px;
+        width: 70px;
+        border-radius: 50%;
+        background: rgb(58, 71, 90);
+        margin: 0 auto 10px auto;
+    }
+    .pokecard h1{
+        font-size: 8px;
+        color: white;
+    }
+    .img{
+        width: 61px;
+        height: 61px;
+    }
+  
+  }
+@media only screen and (min-width:650px) and (max-width: 1500px) {
+    .pokecard h1{
+        font-size: 12px;
+        color: white;
+    }
+    .pokecard{
+        text-align: center;
+        padding: 12%;
+        height: 120px;
+        width: 120px;
+        border-radius: 50%;
+        background: rgb(58, 71, 90);
+        margin: 0 auto 10px auto;
+    }
+    .pokecard:hover{
+        box-shadow: 2px 2px 12px #000000;
+        transition: 200ms;
+        
+    }
+    .img{
+        width: 100px;
+        height: 100px;
+    }
+  }

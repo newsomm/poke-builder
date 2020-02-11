@@ -1,0 +1,95 @@
+.gridComponentFixed{
+    margin-top: 37vh
+}
+.pokeGrid{
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    justify-content: space-between;
+    padding: 10px;
+    width: 87%;
+    margin: 23px auto 0 auto;
+    
+}
+.regionSelect{
+    width: 10%;
+    padding: 10px;
+    margin: 40px auto 30px auto;
+    align-items: center;
+    text-align: center;
+}
+.regionSelect select{
+    border: none;
+    padding: 10px;
+    border-radius:10px;
+    margin-right: 10px;
+}
+.regionSelect button{
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+}
+.regionSelect button:hover{
+    color: white;
+    background: rgb(58, 71, 90);
+}
+
+@media (max-width: 550px){
+    .pokeGrid{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-content: space-around;
+        width: 85%;
+        margin: 0 auto;        
+    }
+    .regionSelect{
+        display: flex;
+        justify-content: space-between;
+        width: 30%;
+        margin: 0 auto;
+    }
+    .regionSelect select{
+        font-size: 9px;
+    }
+    .regionSelect button{
+        font-size: 9px;
+    }
+
+    }
+     
+@media (min-width: 549px) and (max-width: 899px){
+    .pokeGrid{
+        grid-template-columns: repeat(4, 1fr);      
+    }
+    .regionSelect{
+        display: flex;
+        justify-content: space-between;
+        width: 20%;
+        margin: 0 auto;
+    }
+    .regionSelect select{
+        font-size: 13px;
+    }
+    .regionSelect button{
+        font-size: 13px;
+    }
+
+    }
+     
+@media (min-width: 900px) and (max-width: 1199px){
+    .pokeGrid{
+        grid-template-columns: repeat(5, 1fr);      
+    }
+    .regionSelect{
+      width: 30%;
+    }
+    }
+     
+@media (min-width: 1200px) and (max-width: 1500px){
+    .pokeGrid{
+        grid-template-columns: repeat(6, 1fr);      
+    }
+    .regionSelect{
+        width: 30%;
+      }
+    }

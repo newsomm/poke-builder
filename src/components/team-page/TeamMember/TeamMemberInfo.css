@@ -1,0 +1,87 @@
+.teamMemberInfo{
+    font-family: 'Press Start 2P', cursive;
+    border-radius: 10px;
+    color: white;
+    margin: 10px;
+    padding: 15px;
+    background: rgb(49,62,83);
+    background: linear-gradient(123deg, rgba(49,62,83,1) 50%, rgba(58,71,90,1) 50%);
+    display: flex;
+    justify-content: space-around;
+}
+
+.loaderBox{
+    padding: 30%;
+}
+
+.savedTeamImg{
+    width: 140px;
+    margin: 30px;
+}
+
+.moveList{
+    list-style: none;
+}
+
+.movesetButton{
+    text-align: center;
+}
+
+.cTButton{
+    margin: 10px;
+    border: 1px solid white;
+}
+.cTButton:hover{
+    border: 1px solid white;
+}
+
+.savedTypeList{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+@media (max-width: 549px){
+    .teamMemberInfo{
+        font-family: 'Press Start 2P', cursive;
+        border-radius: 10px;
+        color: white;
+        margin: 10px;
+        padding: 15px;
+        background: rgb(49,62,83);
+        background: linear-gradient(123deg, rgba(49,62,83,1) 50%, rgba(58,71,90,1) 50%);
+        display: flex;
+        justify-content: space-around;
+    }
+    .savedTeamImg{
+        width: 150px;
+        margin: 15px;
+    }
+    .savedTypeList{
+        margin-top: 5%;
+        width: 40%;
+    }
+
+}  
+@media (min-width: 550px) and (max-width: 899px){
+    .teamMemberInfo{
+        font-family: 'Press Start 2P', cursive;
+        border-radius: 10px;
+        color: white;
+        margin: 10px;
+        padding: 15px;
+        background: rgb(49,62,83);
+        background: linear-gradient(123deg, rgba(49,62,83,1) 50%, rgba(58,71,90,1) 50%);
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .savedTeamImg{
+        width: 140px;
+        margin: 20px;
+    }
+    .savedTypeList{
+        margin-top: 5%;
+        width: 40%;
+    }
+    }

@@ -1,0 +1,77 @@
+.logo{
+    margin: 10px auto;
+    width: 4%;
+}
+
+.teamContainer{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    width: 70%;
+    margin: 20px auto 5px auto;
+    height: 20vh;
+    padding: 10px;
+}
+@media (max-width: 500px){
+    .logo{
+        display: none;
+    }
+    .yourName{
+        width: 80px;
+     }
+     .teamContainer{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 90%;
+        height: 280px;
+        margin: 5px auto 0 auto;
+    }
+    }
+     
+@media (min-width: 501px) and (max-width: 680px){
+    .yourName{
+        width: 90px;
+     }
+    .logo{
+        display: none;
+    }
+    .teamContainer{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 70%;
+        margin: 20px auto 5px auto;
+        height: 30vh;
+        padding: 10px;
+    }
+    }
+@media (min-width: 680px) and (max-width: 1039px){
+    .teamContainer{
+            height: 34vh;
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+     
+@media (min-width: 1040px) and (max-width: 1199px){
+    .logo{
+        display: none;
+    }
+    .teamContainer{
+        width: 90%;
+        grid-template-columns: repeat(6, 1fr);
+        margin: 5px auto 0 auto;
+    }
+
+    }
+     
+@media (min-width: 1200px) and (max-width: 1500px){
+    .logo{
+        display: none;
+    }
+    .teamContainer{
+        display: grid;
+        width: 90%;
+        margin: 5px auto 0 auto;
+
+    }
+
+    }
+    

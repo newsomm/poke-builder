@@ -1,0 +1,127 @@
+.SavedTeam{
+height: 100vh;
+}
+.savedTeamContainer{
+    width: 75%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 1vh auto 0 auto; 
+}
+
+.noTeam{
+    color: white;
+    text-align: center;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.editTeam{
+    margin: 0em;
+}
+
+.deleteButton{
+    background: red;
+    color: white;
+    border: 1px solid red;
+    margin: 0;
+}
+
+.deleteButton:hover{
+    border: 1px solid red;
+    color:red;
+    background: white;
+}
+
+
+.savedTeamButtons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin: 2vh auto;
+    width: 15%;
+}
+
+.noTeam h1 {
+    margin-bottom: 25px;
+}
+
+
+@media (max-width: 549px){
+    .savedTeamContainer{
+        width: 95%;
+        grid-template-columns: repeat(1, 1fr);
+        margin: 1vh auto 0 auto; 
+    }
+    .move{
+        margin: 2px;
+        font-size: 6px;
+        color: white;
+        padding: 10px;
+        width: 100px;
+        border-radius: 40px;
+        background: linear-gradient(123deg, rgba(49,62,83,1) 50%, rgba(58,71,90,1) 50%);
+        border: 1px solid rgb(182, 171, 171);
+    }
+    
+    .typePP{
+        width: 100px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .savedTeamButtons{
+        width: 35%;
+    }
+    .noTeam h1{
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+}  
+@media (min-width: 550px) and (max-width: 899px){
+    .savedTeamContainer{
+        width: 70%;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .savedTeamButtons{
+        width: 28%;
+    }
+    .noTeam h1{
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    }
+     
+@media (min-width: 900px) and (max-width: 1199px){
+    .savedTeamContainer{
+        width: 100%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .savedTeamButtons{
+        width: 20%;
+    }
+    .noTeam h1{
+        margin-bottom: 20px;
+    }
+    }
+     
+@media (min-width: 1200px) and (max-width: 1399px){
+    .savedTeamContainer{
+        width: 80%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .savedTeamButtons{
+        width: 20%;
+    }
+    }
+@media (min-width: 1400px) and (max-width: 1700px){
+    .savedTeamContainer{
+        width: 60%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .savedTeamButtons{
+        width: 20%;
+    }
+    }

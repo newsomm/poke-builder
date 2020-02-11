@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import TeamMemberInfo from './TeamMemberInfo'
+import TeamMemberInfo from './TeamMember/TeamMemberInfo'
 import { Link } from 'react-router-dom'
-import '../../styles/SavedTeam.css'
+import './SavedTeam.css'
 
 class SavedTeam extends Component {
     handleDelete = async () => {
@@ -17,7 +17,7 @@ class SavedTeam extends Component {
         if (localStorage.getItem("savedTeam") === null) {
             return (
                 <div className='noTeam'>
-                    <h1 >You have no saved teams. Go and make one!</h1>
+                    <h1 >You don't have a saved team. Go and make one!</h1>
                     <Link to='/builder'>
                         <button className='clearTeam'>Make Team</button>
                     </Link>
@@ -30,11 +30,12 @@ class SavedTeam extends Component {
             ))
             return (
                 <div className='SavedTeam'>
-                    <button onClick={this.handleDelete} className='clearTeam'>Delete Team</button>
-                    <Link to='/builder'>
-                        <button onClick={this.handleEdit} className='clearTeam'>Edit Team</button>
-                    </Link>
-
+                    <div className='savedTeamButtons'>
+                        <button onClick={this.handleDelete} className='clearTeam deleteButton'>Delete Team</button>
+                        <Link to='/builder'>
+                            <button onClick={this.handleEdit} className='clearTeam editTeam'>Edit Team</button>
+                        </Link>
+                    </div>
                     <div className='savedTeamContainer'>
                         {team}
                     </div>

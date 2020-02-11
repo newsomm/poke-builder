@@ -1,0 +1,112 @@
+.teamcard h1{
+    font-size: 12px;
+    color: white;
+}
+.teamcard{
+    text-align: center;
+    padding: 12%;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    background: rgb(58, 71, 90);
+    margin: 0 auto 10px auto;
+    cursor: pointer;
+
+}
+.teamcard:hover{
+    box-shadow: 2px 2px 12px #000000;
+    transition: 200ms;
+    
+}
+.teamImg{
+    width: 100px;
+    height: 100px;
+}
+
+@media (max-width: 500px){
+    .teamcard h1{
+        font-size:9px;
+        color: white;
+    }
+    .teamcard{
+        text-align: center;
+        padding: 20%;
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        background: rgb(58, 71, 90);
+        margin: 0 auto 10px auto;
+        cursor: pointer;
+    
+    }
+    .teamcard:hover{
+        box-shadow: 2px 2px 12px #000000;
+        transition: 200ms;
+        
+    }
+    .teamImg{
+        width: 50px;
+        height: 50px;
+    }
+    .type{
+        font-size: 5px;
+    }
+     
+    }
+     
+@media (min-width: 501px) and (max-width: 899px){
+    .teamcard h1{
+        font-size:8px;
+        color: white;
+    }
+    .teamcard{
+        text-align: center;
+        padding: 17%;
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        background: rgb(58, 71, 90);
+        margin: 0 auto 10px auto;
+        cursor: pointer;
+    
+    }
+    .teamcard:hover{
+        box-shadow: 2px 2px 12px #000000;
+        transition: 200ms;
+        
+    }
+    .teamImg{
+        width: 80px;
+        height: 80px;
+    }
+    .type{
+        font-size: 6px;
+    }
+    }
+    @media (min-width: 900px) and (max-width: 1199px){
+        .teamcard h1{
+            font-size:8px;
+            color: white;
+        }
+        .teamcard{
+            text-align: center;
+            padding: 15%;
+            height: 90px;
+            width: 90px;
+            border-radius: 50%;
+            background: rgb(58, 71, 90);
+            margin: 0 auto 10px auto;
+            cursor: pointer;
+        
+        }
+        .teamImg{
+            width:90px;
+            height: 90px;
+        }
+    }
+ 
+
+@media (min-width: 1200px)and (max-width: 1500px){
+     
+    }
+    

@@ -7,4 +7,9 @@ body{
   background:linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
   background-position: center;
   background-size: 100%;
+  position: relative;
+}
+
+html, body {
+  overflow-x: hidden;
 }
