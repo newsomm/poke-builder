@@ -3,19 +3,13 @@ import { Route, Switch } from 'react-router-dom'
 import Navbar from './components/UI/NavBar/Navbar'
 import Builder from './components/builder/Builder';
 import SavedTeam from './components/team-page/SavedTeam';
-import './App.css';
 import SideDrawer from './components/UI/SideDrawer/SideDrawer';
+import './App.css';
 
-//TODO Fix Responsiveness (Fix pokeTeam Buttons )
-//TODO Editing Moves (forms loaded )
 //TODO search by name 
-
-//*Possible Feature: Make multiple teams 
-
 class App extends Component {
   state = {
     team: [],
-    selectedMoveSet: [],
     editingTeam: false,
     showSideDrawer: false
   }
@@ -33,17 +27,10 @@ class App extends Component {
     )
   }
 
-
   editTeam = () => {
     this.setState({
       editingTeam: true
     })
-  }
-
-  getSelectedMoves = (name, moves) => {
-    window.localStorage.setItem(
-      `${name}`,
-      JSON.stringify(moves))
   }
 
   deleteTeam = () => {
@@ -54,6 +41,7 @@ class App extends Component {
       window.localStorage.clear()
     })
   }
+
   sideDrawerClosed = () => {
     this.setState({
       showSideDrawer: false
@@ -75,7 +63,7 @@ class App extends Component {
           <Navbar open={this.sideDrawerOpen} />
           <Switch>
             <Route exact path='/' render={() => <Builder saveTeam={this.getTeam} userTeam={this.state.editingTeam ? JSON.parse(window.localStorage.getItem('savedTeam')) : ''} />} />
-            <Route exact path='/my-team' render={() => <SavedTeam team={this.state.team} editTeam={this.editTeam} deleteTeam={this.deleteTeam} getMoves={this.getSelectedMoves} />} />
+            <Route exact path='/my-team' render={() => <SavedTeam editTeam={this.editTeam} deleteTeam={this.deleteTeam} />} />
           </Switch>
           <SideDrawer close={this.sideDrawerClosed} open={this.state.showSideDrawer} />
         </div>

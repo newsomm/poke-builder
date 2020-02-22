@@ -3,23 +3,42 @@ import axios from 'axios'
 import Type from '../../../general/Type/Type'
 import './TeamMember.css'
 
-
 class TeamMember extends Component {
+    signal = axios.CancelToken.source();
+
     state = {
-        types: []
+        types: [],
+        isLoading: false
     }
 
     componentDidMount() {
         this.getType()
     }
 
+    componentWillUnmount() {
+        this.signal.cancel('API Call Aborted');
+    }
+
     getType = async () => {
-        const url = `https://pokeapi.co/api/v2/pokemon/${this.props.index}`
-        const pokeTypeData = await axios.get(url)
-        const getTypes = pokeTypeData.data.types
-        this.setState({
-            types: [...getTypes]
-        })
+        try {
+            this.setState({ isLoading: true })
+            const url = `https://pokeapi.co/api/v2/pokemon/${this.props.index}`
+            const pokeTypeData = await axios.get(url, {
+                cancelToken: this.signal.token
+            })
+            const getTypes = pokeTypeData.data.types
+            this.setState({
+                types: [...getTypes],
+                isLoading: true
+            })
+        } catch (error) {
+            if (axios.isCancel(error)) {
+                console.log('Error: ', error.message);
+            } else {
+                this.setState({ isLoading: false });
+            }
+        }
+
     }
 
     render() {

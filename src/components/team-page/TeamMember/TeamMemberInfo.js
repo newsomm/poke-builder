@@ -7,6 +7,7 @@ import Move from './Move/Move'
 import Loader from '../../general/Loader/Loader'
 import './TeamMemberInfo.css'
 
+
 class TeamMemberInfo extends Component {
     state = {
         moves: [],
@@ -98,28 +99,26 @@ class TeamMemberInfo extends Component {
         return (
             <div>
                 {this.state.isLoaded ? (
-                    <div>
-                        <div key={this.props.id} className='teamMemberInfo'>
-                            <div>
-                                <p>No. {this.props.id}</p>
-                                <img className='savedTeamImg' alt={this.props.name} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.props.id}.png`}></img>
-                                <h3>{this.props.name}</h3>
-                                <div className='savedTypeList'>
-                                    {types}
+                    <div key={this.props.id} className='teamMemberInfo'>
+                        <div>
+                            <p>No. {this.props.id}</p>
+                            <img className='savedTeamImg' alt={this.props.name} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.props.id}.png`}></img>
+                            <h3>{this.props.name}</h3>
+                            <div className='savedTypeList'>
+                                {types}
+                            </div>
+                        </div>
+                        <div>
+                            <ul className='moveList'>
+                                {displayMoves()}
+                                <div className='movesetButton'>
+                                    <button className='clearTeam cTButton' onClick={this.addingHandler}>Edit Moveset</button>
                                 </div>
-                            </div>
-                            <div>
-                                <ul className='moveList'>
-                                    {displayMoves()}
-                                    <div className='movesetButton'>
-                                        <button className='clearTeam cTButton' onClick={this.addingHandler}>Edit Moveset</button>
-                                    </div>
-                                </ul>
-                            </div>
-                            <div key='moves'>
-                                {this.state.addingMoves ? [<Background cancel
-                                    ={this.modalCancel} key='background' />, <MoveModalForm pokeName={this.state.name} key='modalForm' moves={this.state.moves} syncMoves={this.props.getMoves} getMoves={this.getSelectedMoves} cancel={this.modalCancel} id={this.props.id} fixName={this.fixName} />] : null}
-                            </div>
+                            </ul>
+                        </div>
+                        <div key='moves'>
+                            {this.state.addingMoves ? [<Background cancel
+                                ={this.modalCancel} key='background' />, <MoveModalForm pokeName={this.state.name} key='modalForm' moves={this.state.moves} syncMoves={this.props.getMoves} getMoves={this.getSelectedMoves} cancel={this.modalCancel} id={this.props.id} fixName={this.fixName} />] : null}
                         </div>
                     </div>
                 ) :

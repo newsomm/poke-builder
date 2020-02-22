@@ -64,9 +64,7 @@ const type = (props) => {
             break;
     }
     return (
-        <div>
-            <li key={uuid()} className='type' style={{ backgroundColor: `${color}` }}>{props.type.toUpperCase()}</li>
-        </div>
+        <li key={uuid()} className='type' style={{ backgroundColor: `${color}` }}>{props.type.toUpperCase()}</li>
     )
 }
 

@@ -26,6 +26,10 @@ class Builder extends Component {
         }
     }
 
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll)
+    }
+
     getPokermans = async () => {
         const url = `https://pokeapi.co/api/v2/pokedex/national/`
         const pokemon = await axios.get(url)

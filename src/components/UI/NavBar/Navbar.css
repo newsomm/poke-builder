@@ -49,6 +49,12 @@
     margin: 3px 10px;
 }
 
+.navLinks.active{
+    font-weight: 900;
+    color: yellow;
+    text-shadow: -2px 0 #2964FF, 0 2px #2964FF, 2px 0 #2964FF, 0 -2px #2964FF;
+}
+
 .navLinks:hover{
     font-weight: 900;
     color: yellow;
