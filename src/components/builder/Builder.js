@@ -42,18 +42,27 @@ class Builder extends Component {
 
     regionPokemon = (region) => {
         let pokeData = this.state.pokeList
-        if (region === '1') {
-            pokeData = pokeData.slice(0, 151)
-        } else if (region === '2') {
-            pokeData = pokeData.slice(151, 251)
-        } else if (region === '3') {
-            pokeData = pokeData.slice(251, 386)
-        } else if (region === '4') {
-            pokeData = pokeData.slice(386, 494)
-        } else if (region === '5') {
-            pokeData = pokeData.slice(494, 649)
-        } else if (region === '6') {
-            pokeData = pokeData.slice(649, 721)
+        switch (region) {
+            case '1':
+                pokeData = pokeData.slice(0, 151)
+                break;
+            case '2':
+                pokeData = pokeData.slice(151, 251)
+                break;
+            case '3':
+                pokeData = pokeData.slice(251, 386)
+                break;
+            case '4':
+                pokeData = pokeData.slice(386, 494)
+                break;
+            case '5':
+                pokeData = pokeData.slice(494, 649)
+                break;
+            case '6':
+                pokeData = pokeData.slice(649, 721)
+                break;
+            default:
+                return pokeData
         }
         this.setState({
             regionalList: [...pokeData]

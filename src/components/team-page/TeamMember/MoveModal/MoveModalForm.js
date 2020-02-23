@@ -2,17 +2,19 @@ import React, { useState, useEffect } from 'react'
 import useFormState from '../../../../hooks/useFormState'
 import './MoveModalForm.css'
 
-//TODO chosenMoves.every is not a function
+//TODO it hides the thing bbefore I can do anything 
 const MoveModalForm = props => {
     const [move1, setM1] = useFormState('')
     const [move2, setM2] = useFormState('')
     const [move3, setM3] = useFormState('')
     const [move4, setM4] = useFormState('')
     const [chosenMoves, setMoves] = useState([])
+    const { pokeName, syncMoves, setForm } = props
 
-    const handleSubmit = async (evt) => {
+    const handleSubmit = (evt) => {
         evt.preventDefault();
         setMoves([move1, move2, move3, move4])
+        setForm(false)
     }
 
     useEffect(() => {
@@ -21,14 +23,15 @@ const MoveModalForm = props => {
                 return myArray.length === new Set(myArray).size;
             }
             if (checkIfArrayIsUnique(chosenMoves)) {
-                props.syncMoves(props.pokeName, chosenMoves)
+                syncMoves(pokeName, chosenMoves)
+                console.log([pokeName, chosenMoves])
             } else {
                 alert('All Moves Must Be Unique')
             }
         } else {
             alert('Must Select Four Moves')
         }
-    }, [chosenMoves])
+    }, [chosenMoves, syncMoves, pokeName])
 
     const moveSelect = props.moves.map(move => {
         const moveName = move.move.name
@@ -64,7 +67,7 @@ const MoveModalForm = props => {
                             {moveSelect}
                         </select>
                     </div>
-                    <button className='clearTeam modalButtons' onClick={props.cancel}>Cancel</button>
+                    <button className='clearTeam modalButtons' onClick={() => setForm(false)}>Cancel</button>
                     <button className='clearTeam modalButtons' type='submit'>Save</button>
                 </form>
             </div>

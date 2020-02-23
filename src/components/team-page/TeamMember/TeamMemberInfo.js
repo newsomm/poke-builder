@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, memo } from 'react'
 import axios from 'axios'
 import Type from '../../general/Type/Type'
 import MoveModalForm from './MoveModal/MoveModalForm'
@@ -14,6 +14,7 @@ const TeamMemberInfo = props => {
     const [types, setTypes] = useState([])
     const [isLoaded, setLoaded] = useState(false)
     const [adding, addingToggle] = useToggleState()
+    const [formOn, setForm] = useState(false)
 
     useEffect(() => {
         const getIndividualData = async () => {
@@ -31,7 +32,6 @@ const TeamMemberInfo = props => {
         window.localStorage.setItem(
             `${name}`,
             JSON.stringify(moves))
-
     }
 
     const fixName = str => {
@@ -91,21 +91,22 @@ const TeamMemberInfo = props => {
                         <ul className='moveList'>
                             {displayMoves()}
                             <div className='movesetButton'>
-                                <button className='clearTeam cTButton' onClick={addingToggle}>Edit Moveset</button>
+                                <button className='clearTeam cTButton' onClick={() => setForm(true)}>Edit Moveset</button>
                             </div>
                         </ul>
                     </div>
                     <div key='moves'>
-                        {adding ? [
+                        {formOn ? [
                             <Background
-                                cancel={addingToggle}
+                                cancel={() => setForm(false)}
                                 key='background'
                             />,
                             <MoveModalForm
-                                pokeName={name} key='modalForm'
+                                pokeName={name}
+                                key='modalForm'
                                 moves={moves}
                                 syncMoves={getSelectedMoves}
-                                cancel={addingToggle}
+                                setForm={setForm}
                                 id={props.id}
                                 fixName={fixName}
                             />] :
@@ -124,5 +125,5 @@ const TeamMemberInfo = props => {
     )
 }
 
-export default TeamMemberInfo
+export default memo(TeamMemberInfo)
 

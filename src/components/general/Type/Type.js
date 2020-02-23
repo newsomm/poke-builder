@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import './Types.css'
 import uuid from 'uuid'
 
@@ -68,4 +68,4 @@ const type = (props) => {
     )
 }
 
-export default type
+export default memo(type)
