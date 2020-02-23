@@ -1,54 +1,45 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Type from '../../../general/Type/Type'
 import Loader from '../../../general/Loader/Loader'
 import './Move.css'
 
-class Move extends Component {
-    state = {
-        name: '',
-        power: '',
-        type: '',
-        pp: '',
-        isLoaded: false
-    }
-    getMoveData = async () => {
-        const move = await axios.get(`https://pokeapi.co/api/v2/move/${this.props.name}/`)
-        const { name, power, pp, type } = move.data
+const Move = props => {
+    const [name, setName] = useState('')
+    const [type, setType] = useState('')
+    const [pp, setPP] = useState('')
+    //* Was having issues using my 'useStateToggle' hook here. Had to scrap it 
+    const [isLoaded, setLoading] = useState(false)
 
-        this.setState({
-            name: name,
-            power: power,
-            type: type.name,
-            pp: pp,
-            isLoaded: true
-        })
-    }
+    const fixedName = props.fixName(name)
 
-    componentDidMount() {
-        this.getMoveData()
-    }
+    useEffect(() => {
+        const getMoveData = async () => {
+            const move = await axios.get(`https://pokeapi.co/api/v2/move/${props.name}/`)
+            const { name, pp, type } = move.data
+            setName(name);
+            setType(type.name);
+            setPP(pp);
+            setLoading(true)
+        }
+        getMoveData();
+    }, [props.name])
 
-    render() {
-        const { name, pp, type } = this.state
-        const fixedName = this.props.fixName(name)
-        return (
-            <div className='move'>
-                {this.state.isLoaded ? (
-                    <div>
-                        <h1>{fixedName}</h1>
-                        <div className='typePP'>
-                            <Type type={type} />
-                            <h1>PP  {pp}/{pp}</h1>
-                        </div>
+    return (
+        <div className='move'>
+            {isLoaded ? (
+                <div>
+                    <h1>{fixedName}</h1>
+                    <div className='typePP'>
+                        <Type type={type} />
+                        <h1>PP  {pp}/{pp}</h1>
                     </div>
-                ) :
-                    <Loader height='16px' width='16px' />
-                }
+                </div>
+            ) :
+                <Loader height='16px' width='16px' />
+            }
 
-            </div>
-        )
-    }
+        </div>
+    )
 }
-
 export default Move

@@ -13,12 +13,6 @@ class SavedTeam extends Component {
         this.props.editTeam()
     }
 
-    getSelectedMoves = (name, moves) => {
-        window.localStorage.setItem(
-            `${name}`,
-            JSON.stringify(moves))
-    }
-
     render() {
         if (localStorage.getItem("savedTeam") === null) {
             return (
@@ -32,7 +26,7 @@ class SavedTeam extends Component {
         } else {
             const savedTeam = JSON.parse(window.localStorage.getItem('savedTeam'))
             const team = savedTeam.map(member => (
-                <TeamMemberInfo id={member.id} name={member.name} key={member.id} getMoves={this.getSelectedMoves} />
+                <TeamMemberInfo id={member.id} name={member.name} key={member.id} />
             ))
             return (
                 <div className='SavedTeam'>
