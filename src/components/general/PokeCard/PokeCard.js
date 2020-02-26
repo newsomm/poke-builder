@@ -2,10 +2,10 @@ import React from 'react'
 import './PokeCard.css'
 
 
-const PokeCard = props => (
-    <div className='pokecard' key={props.name}>
-        <img className='img' alt={props.name} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.index}.png`}></img>
-        <h1>{props.capital}</h1>
+const PokeCard = ({ name, capital, index }) => (
+    <div className='pokecard' key={name}>
+        <img className='img' alt={name} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index}.png`}></img>
+        <h1>{capital}</h1>
     </div>
 )
 

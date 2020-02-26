@@ -1,47 +1,55 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect, memo } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import PokeTeam from './PokeTeam/PokeTeam'
 import PokeGrid from './PokeGrid/PokeGrid'
 import './Builder.css'
 
-class Builder extends Component {
-    state = {
-        region: '',
-        pokeList: [],
-        regionalList: [],
-        pokeTeam: [],
-        idFound: undefined,
-        scrolled: false,
-        toSavedTeam: false
-    }
+const Builder = ({ saveTeam, userTeam }) => {
+    const [pokeList, setList] = useState([])
+    const [regionList, setRegionList] = useState([])
+    const [pokeTeam, setTeam] = useState([])
+    const [scrolled, setScrolled] = useState(false)
+    const [teamSaved, setSaved] = useState(false)
+    const [idFound, setFound] = useState(undefined)
 
-    componentDidMount() {
-        this.getPokermans();
-        window.addEventListener('scroll', this.handleScroll)
-        if (this.props.userTeam !== '') {
-            this.setState({
-                pokeTeam: this.props.userTeam
-            })
+    useEffect(() => {
+        const getPokemon = async () => {
+            const url = `https://pokeapi.co/api/v2/pokedex/national/`
+            const pokemon = await axios.get(url)
+            const pokeData = pokemon.data.pokemon_entries
+            setList([...pokeData])
+            setRegionList([...pokeData])
+        }
+        getPokemon()
+        window.addEventListener('scroll', handleScroll)
+        if (userTeam !== '') {
+            setTeam(userTeam)
+        }
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [userTeam])
+
+    const handleSave = () => {
+        if (pokeTeam.length === 6) {
+            saveTeam(pokeTeam)
+            setSaved(true)
+        } else {
+            alert('Team Must Have 6 Members')
         }
     }
 
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll)
+    const handleScroll = () => {
+        window.scrollY !== 0 ? setScrolled(true) : setScrolled(false)
     }
 
-    getPokermans = async () => {
-        const url = `https://pokeapi.co/api/v2/pokedex/national/`
-        const pokemon = await axios.get(url)
-        const pokeData = pokemon.data.pokemon_entries
-        this.setState({
-            pokeList: [...pokeData],
-            regionalList: [...pokeData]
-        })
+    const removeFromTeam = id => {
+        setTeam(pokeTeam.filter(pokemon => pokemon.id !== id))
     }
 
-    regionPokemon = (region) => {
-        let pokeData = this.state.pokeList
+    const regionPokemon = (region) => {
+        let pokeData = pokeList
         switch (region) {
             case '1':
                 pokeData = pokeData.slice(0, 151)
@@ -64,91 +72,50 @@ class Builder extends Component {
             default:
                 return pokeData
         }
-        this.setState({
-            regionalList: [...pokeData]
-        })
+        setRegionList([...pokeData])
     }
 
-    handleSave = () => {
-        const { pokeTeam } = this.state
-        if (pokeTeam.length === 6) {
-            this.props.saveTeam(pokeTeam)
-            this.setState({
-                toSavedTeam: true
-            })
-        } else {
-            alert('Team Must Have 6 Members')
-        }
+    const clearTeam = () => {
+        setTeam([])
     }
 
-    handleScroll = () => {
-        if (window.scrollY !== 0) {
-            this.setState({
-                scrolled: true
-            })
-        } else {
-            this.setState({
-                scrolled: false
-            })
-        }
-    }
-
-    addToTeam = (name, id) => {
-        const { pokeTeam, idFound } = this.state
+    const addToTeam = (name, id) => {
         const pokeData = {
             name: name,
             id: id
         }
         if (pokeTeam.length <= 5) {
             if (pokeTeam.every(pokemon => pokemon.id !== id)) {
-                this.setState({
-                    idFound: false
-                })
-                if (idFound === false || idFound === undefined) {
-                    this.setState({
-                        pokeTeam: [...pokeTeam, pokeData]
-                    })
+                setFound(false)
+                if (!idFound) {
+                    setTeam([...pokeTeam, pokeData])
                 }
             }
         }
     }
 
-    removeFromTeam = id => {
-        this.setState({
-            pokeTeam: this.state.pokeTeam.filter(pokemon => pokemon.id !== id)
-        })
-    }
-
-    clearTeam = () => {
-        this.setState({
-            pokeTeam: []
-        })
-    }
-
-    getRegion = (newRegion) => {
-        this.setState({
-            region: newRegion
-        })
-    }
-    render() {
-        if (this.state.toSavedTeam === true) {
-            return (
-                <Redirect to='/my-team' />
-            )
-        }
+    if (teamSaved) {
         return (
-            <div className='builder' >
-                <div className={this.state.scrolled ? 'fullTeamFixed' : 'fullTeam'}>
-                    <PokeTeam pokeTeam={this.state.pokeTeam} remove={this.removeFromTeam} scrolled={this.state.scrolled} />
-                    <div className='teamButtons'>
-                        <button onClick={this.clearTeam} className='clearTeam'>Clear Team</button>
-                        <button onClick={this.handleSave} className='clearTeam'>Save Team</button>
-                    </div>
-                </div>
-                <PokeGrid scrolled={this.state.scrolled ? 'gridComponentFixed' : 'gridComponent'} addToTeam={this.addToTeam} pokeGrid={this.state.regionalList} getRegion={this.getRegion} regionPokemon={this.regionPokemon} />
-            </div>
+            <Redirect to='/my-team' />
         )
     }
-}
 
-export default Builder
+    return (
+        <div className='builder' >
+            <div className={scrolled ? 'fullTeamFixed' : 'fullTeam'}>
+                <PokeTeam pokeTeam={pokeTeam} remove={removeFromTeam} scrolled={scrolled} />
+                <div className='teamButtons'>
+                    <button onClick={clearTeam} className='clearTeam'>Clear Team</button>
+                    <button onClick={handleSave} className='clearTeam'>Save Team</button>
+                </div>
+            </div>
+            <PokeGrid
+                scrolled={scrolled ? 'gridComponentFixed' : 'gridComponent'}
+                addToTeam={addToTeam}
+                pokeGrid={regionList}
+                regionPokemon={regionPokemon}
+            />
+        </div>
+    )
+}
+export default memo(Builder)

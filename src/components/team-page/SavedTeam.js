@@ -1,49 +1,47 @@
-import React, { Component } from 'react'
+import React, { memo, useState } from 'react'
 import TeamMemberInfo from './TeamMember/TeamMemberInfo'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import './SavedTeam.css'
 
-class SavedTeam extends Component {
-    handleDelete = async () => {
-        await this.props.deleteTeam()
-        this.forceUpdate()
+const SavedTeam = ({ deleteTeam, editTeam }) => {
+    const [redirect, setRedirect] = useState(false)
+    const handleDelete = () => {
+        deleteTeam()
+        setRedirect(true)
+        if (redirect) {
+            return <Redirect to='/' />
+        }
     }
-
-    handleEdit = () => {
-        this.props.editTeam()
-    }
-
-    render() {
-        if (localStorage.getItem("savedTeam") === null) {
-            return (
-                <div className='noTeam'>
-                    <h1 >You don't have a saved team. Go and make one!</h1>
+    if (localStorage.getItem("savedTeam") === null) {
+        return (
+            <div className='noTeam'>
+                <h1 >You don't have a saved team. Go and make one!</h1>
+                <Link to='/'>
+                    <button className='clearTeam'>Make Team</button>
+                </Link>
+            </div>
+        )
+    } else {
+        const savedTeam = JSON.parse(window.localStorage.getItem('savedTeam'))
+        const team = savedTeam.map(member => (
+            <TeamMemberInfo id={member.id} name={member.name} key={member.id} />
+        ))
+        return (
+            <div className='SavedTeam'>
+                <div className='savedTeamButtons'>
+                    <button onClick={handleDelete} className='clearTeam deleteButton'>Delete Team</button>
                     <Link to='/'>
-                        <button className='clearTeam'>Make Team</button>
+                        <button onClick={editTeam} className='clearTeam editTeam'>Edit Team</button>
                     </Link>
                 </div>
-            )
-        } else {
-            const savedTeam = JSON.parse(window.localStorage.getItem('savedTeam'))
-            const team = savedTeam.map(member => (
-                <TeamMemberInfo id={member.id} name={member.name} key={member.id} />
-            ))
-            return (
-                <div className='SavedTeam'>
-                    <div className='savedTeamButtons'>
-                        <button onClick={this.handleDelete} className='clearTeam deleteButton'>Delete Team</button>
-                        <Link to='/'>
-                            <button onClick={this.handleEdit} className='clearTeam editTeam'>Edit Team</button>
-                        </Link>
-                    </div>
-                    <div className='savedTeamContainer'>
-                        {team}
-                    </div>
+                <div className='savedTeamContainer'>
+                    {team}
                 </div>
-            )
-        }
-
+            </div>
+        )
     }
 }
 
-export default SavedTeam
+export default memo(SavedTeam)
+
+

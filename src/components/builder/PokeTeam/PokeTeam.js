@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import uuid from 'uuid'
 import './PokeTeam.css'
 import TeamMember from './TeamMember/TeamMember'
@@ -16,7 +16,7 @@ const PokeTeam = ({ remove, scrolled, pokeTeam }) => {
     })
     return (
         <div>
-            {scrolled ? (
+            {!scrolled ? (
                 <div>
                     <div>
                         <img className='logo' src='http://pluspng.com/img-png/pokemon-logo-png-pokemon-logo-png-2000.png' alt='logo' />
@@ -31,4 +31,4 @@ const PokeTeam = ({ remove, scrolled, pokeTeam }) => {
     )
 }
 
-export default PokeTeam
+export default memo(PokeTeam)

@@ -8,7 +8,6 @@ const Move = props => {
     const [name, setName] = useState('')
     const [type, setType] = useState('')
     const [pp, setPP] = useState('')
-    //* Was having issues using my 'useStateToggle' hook here. Had to scrap it 
     const [isLoaded, setLoading] = useState(false)
 
     const fixedName = props.fixName(name)

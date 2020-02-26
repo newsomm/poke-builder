@@ -25,3 +25,9 @@
 .modalImg{
     margin: 20px;
 }
+
+.formInvalid{
+    color: rgb(248, 56, 56);
+    font-weight: bold;
+    font-size: .75em;
+}

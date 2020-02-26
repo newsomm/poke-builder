@@ -3,9 +3,9 @@ import Background from '../Background/Background'
 import { NavLink } from 'react-router-dom'
 import './SideDrawer.css'
 
-const SideDrawer = props => {
+const SideDrawer = ({ open, toggle }) => {
     let attachedClasses = ['SideDrawer', 'Close']
-    if (props.open === true) {
+    if (open === true) {
         attachedClasses = ['SideDrawer', 'Open']
     }
     return (
@@ -19,11 +19,8 @@ const SideDrawer = props => {
                     <NavLink exact className='navLinks' to='/my-team'>Your Team</NavLink>
                 </nav>
             </div>
-            {props.open ? <Background cancel={props.close} /> : null}
+            {open ? <Background cancel={toggle} /> : null}
         </div>
-
     )
-
 }
-
 export default SideDrawer

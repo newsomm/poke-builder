@@ -13,8 +13,7 @@ const TeamMemberInfo = props => {
     const [name, setName] = useState('')
     const [types, setTypes] = useState([])
     const [isLoaded, setLoaded] = useState(false)
-    const [adding, addingToggle] = useToggleState()
-    const [formOn, setForm] = useState(false)
+    const [formOn, setForm] = useToggleState()
 
     useEffect(() => {
         const getIndividualData = async () => {
@@ -91,14 +90,14 @@ const TeamMemberInfo = props => {
                         <ul className='moveList'>
                             {displayMoves()}
                             <div className='movesetButton'>
-                                <button className='clearTeam cTButton' onClick={() => setForm(true)}>Edit Moveset</button>
+                                <button className='clearTeam cTButton' onClick={setForm}>Edit Moveset</button>
                             </div>
                         </ul>
                     </div>
                     <div key='moves'>
-                        {formOn ? [
+                        {formOn && [
                             <Background
-                                cancel={() => setForm(false)}
+                                cancel={setForm}
                                 key='background'
                             />,
                             <MoveModalForm
@@ -109,8 +108,7 @@ const TeamMemberInfo = props => {
                                 setForm={setForm}
                                 id={props.id}
                                 fixName={fixName}
-                            />] :
-                            null
+                            />]
                         }
                     </div>
                 </div>

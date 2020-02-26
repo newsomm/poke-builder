@@ -2,9 +2,9 @@ import React, { memo } from 'react'
 import './Types.css'
 import uuid from 'uuid'
 
-const type = (props) => {
+const type = ({ type }) => {
     let color;
-    switch (props.type) {
+    switch (type) {
         case ('fire'):
             color = '#f72516'
             break;
@@ -64,7 +64,7 @@ const type = (props) => {
             break;
     }
     return (
-        <li key={uuid()} className='type' style={{ backgroundColor: `${color}` }}>{props.type.toUpperCase()}</li>
+        <li key={uuid()} className='type' style={{ backgroundColor: `${color}` }}>{type.toUpperCase()}</li>
     )
 }
 
