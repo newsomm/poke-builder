@@ -75,10 +75,6 @@ const Builder = ({ saveTeam, userTeam }) => {
         setRegionList([...pokeData])
     }
 
-    const clearTeam = () => {
-        setTeam([])
-    }
-
     const addToTeam = (name, id) => {
         const pokeData = {
             name: name,
@@ -105,7 +101,7 @@ const Builder = ({ saveTeam, userTeam }) => {
             <div className={scrolled ? 'fullTeamFixed' : 'fullTeam'}>
                 <PokeTeam pokeTeam={pokeTeam} remove={removeFromTeam} scrolled={scrolled} />
                 <div className='teamButtons'>
-                    <button onClick={clearTeam} className='clearTeam'>Clear Team</button>
+                    <button onClick={() => setTeam([])} className='clearTeam'>Clear Team</button>
                     <button onClick={handleSave} className='clearTeam'>Save Team</button>
                 </div>
             </div>

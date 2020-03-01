@@ -1,18 +1,21 @@
 import React, { useState } from 'react'
-import useFormState from '../../../../hooks/useFormState'
 import './MoveModalForm.css'
 
 const MoveModalForm = ({ pokeName, syncMoves, setForm, moves, id, fixName }) => {
-    const [move1, setM1] = useFormState('')
-    const [move2, setM2] = useFormState('')
-    const [move3, setM3] = useFormState('')
-    const [move4, setM4] = useFormState('')
     const [formInvalid, setInvalid] = useState({ invalid: false, message: '' })
+    const [moveForm, setMoves] = useState({
+        move1: '',
+        move2: '',
+        move3: '',
+        move4: '',
+    })
+    const { move1, move2, move3, move4 } = moveForm
+
+    const onChange = e => setMoves({ ...moveForm, [e.target.name]: e.target.value })
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        const moves = [move1, move2, move3, move4]
-        checkValid(moves)
+        checkValid(Object.values(moveForm))
     }
 
     const checkValid = arr => {
@@ -43,25 +46,25 @@ const MoveModalForm = ({ pokeName, syncMoves, setForm, moves, id, fixName }) => 
                 {formInvalid.invalid && <p className='formInvalid'><i className="fas fa-times-circle"></i> Form Invalid: {formInvalid.message}</p>}
                 <form className='' onSubmit={handleSubmit} >
                     <div className='moveSelectForm'>
-                        <select className='moveSelect' value={move1} name='move1' onChange={setM1}>
+                        <select className='moveSelect' value={move1} name='move1' onChange={onChange}>
                             <option>Select Move</option>
                             {moveSelect}
                         </select>
                     </div>
                     <div className='moveSelectForm'>
-                        <select className='moveSelect' value={move2} name='move2' onChange={setM2}>
+                        <select className='moveSelect' value={move2} name='move2' onChange={onChange}>
                             <option value=''>Select Move</option>
                             {moveSelect}
                         </select>
                     </div>
                     <div className='moveSelectForm'>
-                        <select className='moveSelect' value={move3} name='move3' onChange={setM3}>
+                        <select className='moveSelect' value={move3} name='move3' onChange={onChange}>
                             <option value=''>Select Move</option>
                             {moveSelect}
                         </select>
                     </div>
                     <div className='moveSelectForm'>
-                        <select className='moveSelect' value={move4} name='move4' onChange={setM4}>
+                        <select className='moveSelect' value={move4} name='move4' onChange={onChange}>
                             <option value=''>Select Move</option>
                             {moveSelect}
                         </select>
