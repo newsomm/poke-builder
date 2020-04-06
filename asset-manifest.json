@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/poke-builder/static/css/main.329e0e67.chunk.css",
+    "main.js": "/poke-builder/static/js/main.ef1ad66b.chunk.js",
+    "main.js.map": "/poke-builder/static/js/main.ef1ad66b.chunk.js.map",
+    "runtime-main.js": "/poke-builder/static/js/runtime-main.21f4f9a9.js",
+    "runtime-main.js.map": "/poke-builder/static/js/runtime-main.21f4f9a9.js.map",
+    "static/js/2.7caba612.chunk.js": "/poke-builder/static/js/2.7caba612.chunk.js",
+    "static/js/2.7caba612.chunk.js.map": "/poke-builder/static/js/2.7caba612.chunk.js.map",
+    "index.html": "/poke-builder/index.html",
+    "precache-manifest.2f29960605811a959e4a7e8c8089f086.js": "/poke-builder/precache-manifest.2f29960605811a959e4a7e8c8089f086.js",
+    "service-worker.js": "/poke-builder/service-worker.js",
+    "static/css/main.329e0e67.chunk.css.map": "/poke-builder/static/css/main.329e0e67.chunk.css.map",
+    "static/js/2.7caba612.chunk.js.LICENSE.txt": "/poke-builder/static/js/2.7caba612.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.21f4f9a9.js",
+    "static/js/2.7caba612.chunk.js",
+    "static/css/main.329e0e67.chunk.css",
+    "static/js/main.ef1ad66b.chunk.js"
+  ]
+}
