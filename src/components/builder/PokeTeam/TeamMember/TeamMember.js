@@ -1,6 +1,7 @@
 import React, { useState, useEffect, memo } from 'react'
 import axios from 'axios'
 import Type from '../../../general/Type/Type'
+import Loader from '../../../general/Loader/Loader'
 import './TeamMember.css'
 
 const TeamMember = ({ capital, index }) => {
@@ -20,8 +21,8 @@ const TeamMember = ({ capital, index }) => {
             mounted = false
         }
     }, [index])
-
-    return (
+    console.log(types.length)
+    return types.length === 0 ? <div className='teamloader'><Loader /></div> : (
         <div>
             <div className='teamcard' key={capital}>
                 <div>

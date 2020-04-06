@@ -1,6 +1,7 @@
 .teamMemberInfo{
     font-family: 'Press Start 2P', cursive;
     border-radius: 10px;
+    box-sizing: border-box;
     color: white;
     margin: 10px;
     padding: 15px;
@@ -47,16 +48,16 @@
         font-family: 'Press Start 2P', cursive;
         border-radius: 10px;
         color: white;
-        margin: 10px;
-        padding: 15px;
+        margin: 12px;
+        padding: 20px;
         background: rgb(49,62,83);
         background: linear-gradient(123deg, rgba(49,62,83,1) 50%, rgba(58,71,90,1) 50%);
         display: flex;
         justify-content: space-around;
     }
     .savedTeamImg{
-        width: 150px;
-        margin: 15px;
+        width: 130px;
+        margin: 30px 0;
     }
     .savedTypeList{
         margin-top: 5%;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import Navbar from './components/UI/NavBar/Navbar'
 import Builder from './components/builder/Builder';
 import SavedTeam from './components/team-page/SavedTeam';
@@ -29,10 +29,8 @@ const App = () => {
   return (
     <div>
       <Navbar open={drawerToggle} />
-      <Switch>
-        <Route exact path='/' render={() => <Builder saveTeam={getTeam} userTeam={editing ? JSON.parse(window.localStorage.getItem('savedTeam')) : ''} />} />
-        <Route exact path='/my-team' render={() => <SavedTeam editTeam={editTeam} deleteTeam={deleteTeam} />} />
-      </Switch>
+      <Route exact path='/' render={() => <Builder saveTeam={getTeam} userTeam={editing ? JSON.parse(window.localStorage.getItem('savedTeam')) : ''} />} />
+      <Route exact path='/my-team' render={() => <SavedTeam editTeam={editTeam} deleteTeam={deleteTeam} />} />
       <SideDrawer toggle={drawerToggle} open={showSideDrawer} />
     </div>
   )
