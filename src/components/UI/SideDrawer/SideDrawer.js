@@ -15,8 +15,8 @@ const SideDrawer = ({ open, toggle }) => {
                     <img className='mainLogo drawerLogo' src="https://fontmeme.com/permalink/200113/d3dec358ccaaec9783bff84033b9b438.png" alt="pokemon-font" border="0" />
                 </div>
                 <nav>
-                    <NavLink exact className='navLinks' to='/'>Builder</NavLink>
-                    <NavLink exact className='navLinks' to='/my-team'>Your Team</NavLink>
+                    <NavLink exact className='navLinks' to='/poke-builder/'>Builder</NavLink>
+                    <NavLink exact className='navLinks' to='/poke-builder/my-team'>Your Team</NavLink>
                 </nav>
             </div>
             {open ? <Background cancel={toggle} /> : null}

@@ -9,14 +9,14 @@ const SavedTeam = ({ deleteTeam, editTeam }) => {
         deleteTeam()
         setRedirect(true)
         if (redirect) {
-            return <Redirect to='/' />
+            return <Redirect to='/poke-builder' />
         }
     }
     if (localStorage.getItem("savedTeam") === null) {
         return (
             <div className='noTeam'>
                 <h1 >You don't have a saved team. Go and make one!</h1>
-                <Link to='/'>
+                <Link to='/poke-builder'>
                     <button className='clearTeam'>Make Team</button>
                 </Link>
             </div>
@@ -30,7 +30,7 @@ const SavedTeam = ({ deleteTeam, editTeam }) => {
             <div className='SavedTeam'>
                 <div className='savedTeamButtons'>
                     <button onClick={handleDelete} className='clearTeam deleteButton'>Delete Team</button>
-                    <Link to='/'>
+                    <Link to='/poke-builder'>
                         <button onClick={editTeam} className='clearTeam editTeam'>Edit Team</button>
                     </Link>
                 </div>

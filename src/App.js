@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Navbar from './components/UI/NavBar/Navbar'
 import Builder from './components/builder/Builder';
 import SavedTeam from './components/team-page/SavedTeam';
@@ -29,8 +29,10 @@ const App = () => {
   return (
     <div>
       <Navbar open={drawerToggle} />
-      <Route exact path='/' render={() => <Builder saveTeam={getTeam} userTeam={editing ? JSON.parse(window.localStorage.getItem('savedTeam')) : ''} />} />
-      <Route exact path='/my-team' render={() => <SavedTeam editTeam={editTeam} deleteTeam={deleteTeam} />} />
+      <Route exact path='/poke-builder/' render={() => <Builder saveTeam={getTeam} userTeam={editing ? JSON.parse(window.localStorage.getItem('savedTeam')) : ''} />} />
+      <Switch>
+        <Route exact path='/poke-builder/my-team' render={() => <SavedTeam editTeam={editTeam} deleteTeam={deleteTeam} />} />
+      </Switch>
       <SideDrawer toggle={drawerToggle} open={showSideDrawer} />
     </div>
   )

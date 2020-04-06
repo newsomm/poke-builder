@@ -92,7 +92,7 @@ const Builder = ({ saveTeam, userTeam }) => {
 
     if (teamSaved) {
         return (
-            <Redirect to='/my-team' />
+            <Redirect to='/poke-builder/my-team' />
         )
     }
 
