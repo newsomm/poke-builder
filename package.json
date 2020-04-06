@@ -2,7 +2,7 @@
   "name": "poke-builder",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://newsomm.github.io/poke-builder",
+  "homepage": "https://github.com/newsomm.github.io/poke-builder",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
