@@ -3,37 +3,61 @@ import axios from 'axios'
 import Type from '../../../general/Type/Type'
 import Loader from '../../../general/Loader/Loader'
 import './Move.css'
+import MoveInfo from './MoveInfo/MoveInfo'
 
-const Move = props => {
-    const [name, setName] = useState('')
-    const [type, setType] = useState('')
-    const [pp, setPP] = useState('')
-    const [isLoaded, setLoading] = useState(false)
-
-    const fixedName = props.fixName(name)
+const Move = ({ name, fixName }) => {
+    const [isLoaded, setLoaded] = useState(false)
+    const [moveInfoDisplay, setDisplay] = useState(false)
+    const [moveData, setData] = useState({
+        type: '',
+        power: '',
+        damageClass: '',
+        pp: '',
+        accuracy: ''
+    })
+    const { type, pp } = moveData
+    const fixedName = fixName(name)
 
     useEffect(() => {
         const getMoveData = async () => {
-            const move = await axios.get(`https://pokeapi.co/api/v2/move/${props.name}/`)
-            const { name, pp, type } = move.data
-            setName(name);
-            setType(type.name);
-            setPP(pp);
-            setLoading(true)
+            const move = await axios.get(`https://pokeapi.co/api/v2/move/${name}/`)
+            const { pp, type, power, damage_class, accuracy } = move.data
+            setData({
+                ...moveData,
+                type: type.name,
+                power: power,
+                damageClass: damage_class.name,
+                pp: pp,
+                accuracy: accuracy
+            })
+            setLoaded(true)
         }
         getMoveData();
-    }, [props.name])
+    }, [name])
 
     return (
         <div className='move'>
             {isLoaded ? (
-                <div>
-                    <h1>{fixedName}</h1>
-                    <div className='typePP'>
-                        <Type type={type} />
-                        <h1>PP  {pp}/{pp}</h1>
+                <>
+                    <div>
+                        <div style={{ display: 'inline-flex' }} className='basicMoveInfo'>
+                            <h1>{fixedName}</h1>
+                            <i className="fas fa-info-circle"
+                                onMouseEnter={() => setDisplay(true)}
+                                onMouseLeave={() => setDisplay(false)}
+                            ></i>
+                        </div>
+                        <div className='typePP'>
+                            <Type type={type} />
+                            <h1>PP  {pp}/{pp}</h1>
+                        </div>
                     </div>
-                </div>
+                    {moveInfoDisplay &&
+                        <>
+                            <MoveInfo info={moveData} name={fixedName} />
+                        </>
+                    }
+                </>
             ) :
                 <Loader height='16px' width='16px' />
             }

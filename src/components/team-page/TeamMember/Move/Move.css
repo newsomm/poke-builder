@@ -9,6 +9,19 @@
     border: 1px solid rgb(182, 171, 171);
 }
 
+.basicMoveInfo{
+    align-items: center;
+}
+
+.fa-info-circle{
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.fa-info-circle:hover{
+    color: rgb(1, 204, 255); 
+}
+
 .typePP{
     width: 170px;
     display: flex;
