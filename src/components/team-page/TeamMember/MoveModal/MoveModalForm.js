@@ -1,78 +1,63 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import Move from '../Move/Move'
 import './MoveModalForm.css'
 
-const MoveModalForm = ({ pokeName, syncMoves, setForm, moves, id, fixName }) => {
+const MoveModalForm = ({ pokeName, syncMoves, setForm, moves, id, fixedName }) => {
     const [formInvalid, setInvalid] = useState({ invalid: false, message: '' })
-    const [moveForm, setMoves] = useState({
-        move1: '',
-        move2: '',
-        move3: '',
-        move4: '',
-    })
-    const { move1, move2, move3, move4 } = moveForm
+    const [moveForm, setMoves] = useState([])
 
-    const onChange = e => setMoves({ ...moveForm, [e.target.name]: e.target.value })
+    useEffect(() => {
+        if (localStorage.getItem(pokeName)) {
+            const savedMoves = JSON.parse(window.localStorage.getItem(pokeName))
+            setMoves(savedMoves)
+        }
+    }, [pokeName])
 
-    const handleSubmit = (evt) => {
-        evt.preventDefault();
-        checkValid(Object.values(moveForm))
+    const addMove = (move) => {
+        if (moveForm.length < 4) {
+            if (moveForm.every(selected => move !== selected)) {
+                setMoves([move, ...moveForm])
+            }
+        }
+    }
+
+    const removeMove = move => {
+        setMoves(moveForm.filter(selected => move !== selected))
     }
 
     const checkValid = arr => {
-        if (arr.every(move => move !== '')) {
-            const checkIfArrayIsUnique = (myArray) => {
-                return myArray.length === new Set(myArray).size;
-            }
-            if (checkIfArrayIsUnique(arr)) {
-                syncMoves(pokeName, arr)
-                setForm()
-            } else {
-                setInvalid({ invalid: true, message: 'All Moves Must Be Unique' })
-            }
+        if (moveForm.length === 4) {
+            // const checkIfArrayIsUnique = (myArray) => {
+            //     return myArray.length === new Set(myArray).size;
+            // }
+            syncMoves(pokeName, arr)
+            setForm()
         } else {
             setInvalid({ invalid: true, message: 'Must Select Four Moves' })
         }
     }
-
-    const moveSelect = moves.map(move => {
-        const moveName = move.move.name
-        const fixedName = fixName(moveName)
-        return <option key={moveName} value={moveName}>{fixedName}</option>
-    })
     return (
-        <div>
-            <div className='modalForm'>
-                <img className='modalImg' alt={pokeName} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}></img>
-                {formInvalid.invalid && <p className='formInvalid'><i className="fas fa-times-circle"></i> Form Invalid: {formInvalid.message}</p>}
-                <form className='' onSubmit={handleSubmit} >
-                    <div className='moveSelectForm'>
-                        <select className='moveSelect' value={move1} name='move1' onChange={onChange}>
-                            <option>Select Move</option>
-                            {moveSelect}
-                        </select>
+        <div className='modalForm' onSubmit={() => checkValid(moveForm)}>
+            <img className='modalImg' alt={pokeName} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}></img>
+            <div className='selectedMoves'>
+                {moveForm.map(move => (
+                    <div onClick={() => removeMove(move)} key={move}>
+                        <Move name={move} key={move} profileDisplay={false} fixName={fixedName} styling={'moveSelect'} />
                     </div>
-                    <div className='moveSelectForm'>
-                        <select className='moveSelect' value={move2} name='move2' onChange={onChange}>
-                            <option value=''>Select Move</option>
-                            {moveSelect}
-                        </select>
-                    </div>
-                    <div className='moveSelectForm'>
-                        <select className='moveSelect' value={move3} name='move3' onChange={onChange}>
-                            <option value=''>Select Move</option>
-                            {moveSelect}
-                        </select>
-                    </div>
-                    <div className='moveSelectForm'>
-                        <select className='moveSelect' value={move4} name='move4' onChange={onChange}>
-                            <option value=''>Select Move</option>
-                            {moveSelect}
-                        </select>
-                    </div>
-                    <button className='clearTeam modalButtons' onClick={setForm}>Cancel</button>
-                    <button className='clearTeam modalButtons' type='submit'>Save</button>
-                </form>
+                ))}
             </div>
+            <div className='moveSelectionList'>
+                {moves.map(move => {
+                    const moveName = move.move.name
+                    return (
+                        <div onClick={() => addMove(moveName)} key={moveName}>
+                            <Move name={moveName} key={moveName} profileDisplay={false} fixName={fixedName} />
+                        </div>
+                    )
+                })}
+            </div>
+            <button className='clearTeam modalButtons' onClick={setForm}>Cancel</button>
+            <button className='clearTeam modalButtons' type='submit' onClick={() => checkValid(moveForm)}>Save</button>
         </div>
     )
 }

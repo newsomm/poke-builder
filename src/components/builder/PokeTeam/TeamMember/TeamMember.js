@@ -21,7 +21,6 @@ const TeamMember = ({ capital, index }) => {
             mounted = false
         }
     }, [index])
-    console.log(types.length)
     return types.length === 0 ? <div className='teamloader'><Loader /></div> : (
         <div>
             <div className='teamcard' key={capital}>

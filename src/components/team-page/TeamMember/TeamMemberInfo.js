@@ -65,7 +65,7 @@ const TeamMemberInfo = props => {
         } else {
             const savedMoves = JSON.parse(window.localStorage.getItem(name))
             const moves = savedMoves.map(move => (
-                <Move name={move} fixName={fixName} key={move} />
+                <Move name={move} fixName={fixName} key={move} profileDisplay={true} />
             ))
             moveDisplay = moves
         }
@@ -107,7 +107,7 @@ const TeamMemberInfo = props => {
                                 syncMoves={getSelectedMoves}
                                 setForm={setForm}
                                 id={props.id}
-                                fixName={fixName}
+                                fixedName={fixName}
                             />]
                         }
                     </div>

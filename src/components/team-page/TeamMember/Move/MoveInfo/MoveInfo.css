@@ -2,13 +2,16 @@
     position: absolute;
     background: rgba(58,71,90);
     padding: 20px;
-    width: 16%;
+    transform: translateX(-40px);
+    width: 220px;
     border-radius: 10px;
     box-shadow: 2px 2px 16px #000000;
+    z-index: 3;
 }
 .moveInfo hr{
     margin: 5px 0;
 }
+
 
 .mainInfo{
     display: flex;
@@ -33,6 +36,7 @@
 
 .infoDisplay{
     display: flex;
+    align-items: center;
     justify-content: space-between;
     width: 100%;
 }
@@ -42,28 +46,18 @@
         left: 5%;
     }
 }  
-@media (min-width: 550px) and (max-width: 899px){
-    .moveInfo{
-        width: 40%;
-        right: 15%;
-    }
+@media (min-width: 612px) and (max-width: 899px){
+
     }
      
 @media (min-width: 900px) and (max-width: 1199px){
-    .moveInfo{
-        width: 30%;
-        transform: translateX(-150px);
-    }
+
     }
      
 @media (min-width: 1200px) and (max-width: 1399px){
-    .moveInfo{
-        width: 25%;
-    }
+
     }
 @media (min-width: 1400px) and (max-width: 1700px){
-    .moveInfo{
-        width: 20%;
-    }
+
     }
 

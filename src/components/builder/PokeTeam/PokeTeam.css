@@ -4,6 +4,7 @@
 }
 
 .teamContainer{
+    transition: all .5s;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     width: 70%;

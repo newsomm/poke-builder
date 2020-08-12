@@ -30,12 +30,14 @@ const PokeGrid = ({ addToTeam, pokeGrid, scrolled, regionPokemon }) => {
             <form className='regionSelect' onSubmit={handleForm}>
                 <select value={region} name='regionForm' onChange={setRegion}>
                     <option value=''>Region</option>
+                    <option value='0'>All</option>
                     <option value='1'>Kanto</option>
                     <option value='2'>Johto</option>
                     <option value='3'>Hoenn</option>
                     <option value='4'>Sinnoh</option>
                     <option value='5'>Unova</option>
                     <option value='6'>Kalos</option>
+                    <option value='7'>Alola</option>
                 </select>
                 <button type='submit'>Find</button>
             </form>

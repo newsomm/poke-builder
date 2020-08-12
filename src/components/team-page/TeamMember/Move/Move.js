@@ -5,7 +5,7 @@ import Loader from '../../../general/Loader/Loader'
 import './Move.css'
 import MoveInfo from './MoveInfo/MoveInfo'
 
-const Move = ({ name, fixName }) => {
+const Move = ({ name, fixName, profileDisplay, styling }) => {
     const [isLoaded, setLoaded] = useState(false)
     const [moveInfoDisplay, setDisplay] = useState(false)
     const [moveData, setData] = useState({
@@ -13,7 +13,8 @@ const Move = ({ name, fixName }) => {
         power: '',
         damageClass: '',
         pp: '',
-        accuracy: ''
+        accuracy: '',
+        desc: ''
     })
     const { type, pp } = moveData
     const fixedName = fixName(name)
@@ -21,14 +22,15 @@ const Move = ({ name, fixName }) => {
     useEffect(() => {
         const getMoveData = async () => {
             const move = await axios.get(`https://pokeapi.co/api/v2/move/${name}/`)
-            const { pp, type, power, damage_class, accuracy } = move.data
+            const { pp, type, power, damage_class, accuracy, flavor_text_entries } = move.data
             setData({
                 ...moveData,
                 type: type.name,
                 power: power,
                 damageClass: damage_class.name,
                 pp: pp,
-                accuracy: accuracy
+                accuracy: accuracy,
+                desc: flavor_text_entries[2]
             })
             setLoaded(true)
         }
@@ -36,21 +38,25 @@ const Move = ({ name, fixName }) => {
     }, [name])
 
     return (
-        <div className='move'>
+        <div className={`move ${!profileDisplay && 'selection'} ${styling}`}>
             {isLoaded ? (
                 <>
                     <div>
                         <div style={{ display: 'inline-flex' }} className='basicMoveInfo'>
-                            <h1>{fixedName}</h1>
+                            <h1 className={`moveNames ${!profileDisplay && 'modalMoveName'}`}>{fixedName}</h1>
                             <i className="fas fa-info-circle"
                                 onMouseEnter={() => setDisplay(true)}
                                 onMouseLeave={() => setDisplay(false)}
                             ></i>
+                            {!profileDisplay && <Type type={type} />}
                         </div>
-                        <div className='typePP'>
-                            <Type type={type} />
-                            <h1>PP  {pp}/{pp}</h1>
-                        </div>
+                        {profileDisplay &&
+                            <div className={`typePP ${!profileDisplay && 'modalDisplay'}`}>
+                                <Type type={type} />
+                                <h1>PP  {pp}/{pp}</h1>
+                            </div>
+                        }
+
                     </div>
                     {moveInfoDisplay &&
                         <>

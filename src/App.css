@@ -12,10 +12,25 @@ body{
   overflow-x: hidden;
 }
 
-
-
 input {
   outline: none;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(49,62,83) rgb(58,71,90);
+}
+*::-webkit-scrollbar {
+  width: 12px;
+}
+*::-webkit-scrollbar-track {
+  background:rgb(49,62,83);
+  border-radius: 20px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(58,71,90);
+  border-radius: 20px;
+  border: 2px solid rgb(49,62,83);
 }
 
 @media (max-width: 500px){

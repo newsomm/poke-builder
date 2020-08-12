@@ -1,16 +1,38 @@
 .modalForm{
     background: rgb(58, 71, 90);
     text-align: center;
-    width: 18em;
-    position: fixed;
+    width: 600px;
+    padding: 20px;
+    position: absolute;
+    max-height: 90%;
     left: 50%;
-    top: 50%;
+    top: 47%;
     transform: translate(-50%, -50%);
     border-radius: 20px;
     z-index: 100;
 }
-.moveSelectForm{
-    margin: 15px;
+
+.selectedMoves{
+    display: flex;
+    border: 1px solid rgb(29, 29, 29);
+    border-radius: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 400px;
+    margin: 10px auto;
+    height: 100px;
+}
+
+.moveSelectionList{
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    max-height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-padding-bottom: 300px;
+    width:550px;
 }
 
 .moveSelect{
@@ -19,11 +41,11 @@
 }
 
 .modalButtons{
-    margin: 8px 10px 25px 10px;
+    margin:30px 10px 25px 10px;
 }
 
 .modalImg{
-    margin: 20px;
+    margin: 10px;
 }
 
 .formInvalid{

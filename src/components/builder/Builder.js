@@ -51,6 +51,8 @@ const Builder = ({ saveTeam, userTeam }) => {
     const regionPokemon = (region) => {
         let pokeData = pokeList
         switch (region) {
+            case '0':
+                break;
             case '1':
                 pokeData = pokeData.slice(0, 151)
                 break;
@@ -68,6 +70,9 @@ const Builder = ({ saveTeam, userTeam }) => {
                 break;
             case '6':
                 pokeData = pokeData.slice(649, 721)
+                break;
+            case '7':
+                pokeData = pokeData.slice(721, 807)
                 break;
             default:
                 return pokeData
@@ -90,11 +95,7 @@ const Builder = ({ saveTeam, userTeam }) => {
         }
     }
 
-    if (teamSaved) {
-        return (
-            <Redirect to='/poke-builder/my-team' />
-        )
-    }
+    if (teamSaved) return <Redirect to='/poke-builder/my-team' />
 
     return (
         <div className='builder' >

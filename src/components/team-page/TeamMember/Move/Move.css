@@ -1,4 +1,5 @@
 .move{
+    position: relative;
     margin: 4px;
     font-size: 7px;
     color: white;
@@ -6,20 +7,49 @@
     width: 165px;
     border-radius: 40px;
     background: linear-gradient(123deg, rgba(49,62,83,1) 50%, rgba(58,71,90,1) 50%);
-    border: 1px solid rgb(182, 171, 171);
+    border: 1px solid rgb(12, 12, 12);
+    transition: .15s;
 }
 
 .basicMoveInfo{
     align-items: center;
+    display: flex;
+    width: 90%;
+    margin: 0px auto;
+    justify-content: space-evenly;
 }
 
 .fa-info-circle{
     font-size: 14px;
-    margin-left: 5px;
+    margin-left: 2px;
+}
+
+.selection .basicMoveInfo{
+    padding: 4px;
+}
+
+.selection{
+    border: 1px solid rgb(29, 29, 29);
+    cursor: pointer;
+    align-items: center;
+    width: 180px;
+    height: 30px;
+}
+
+.selection:hover{
+    box-shadow: 2px 2px 7px #000000;
 }
 
 .fa-info-circle:hover{
     color: rgb(1, 204, 255); 
+}
+
+.modalMoveName{
+    font-size: 10.5px;
+}
+
+.modalDisplay{
+    width: 50px;
 }
 
 .typePP{

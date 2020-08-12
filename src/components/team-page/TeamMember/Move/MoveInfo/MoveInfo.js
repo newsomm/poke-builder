@@ -42,7 +42,7 @@ const MoveInfo = ({ info: { power, pp, type, damageClass, accuracy }, name }) =>
                 </div>
                 <div className='category'>
                     <h1>Power : {power}</h1>
-                    <h1>Accuracy : {accuracy}</h1>
+                    <h1>Acc. : {accuracy}</h1>
                 </div>
 
             </div>

@@ -11,10 +11,12 @@
     background: rgb(58, 71, 90);
     margin: 7px auto 7px auto;
     cursor: pointer;
+    transition: .3s;
 }
 .pokecard:hover{
-    box-shadow: 2px 2px 12px #000000;
-    transition: 200ms;
+    box-shadow: 2px 2px 6px #000000;
+    transition: 300ms;
+    transform: scale(1.05);
     
 }
 .img{

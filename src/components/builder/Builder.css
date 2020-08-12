@@ -1,4 +1,5 @@
 .fullTeam{
+    transition: .5s;
     margin-top: 20px;
     background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
     width: 100%;
@@ -11,6 +12,7 @@
     background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
     width: 100%;
     text-align: center;
+    z-index: 50;
 }
 .teamButtons{
     display: flex;
@@ -24,13 +26,12 @@
     border: none;
     padding: 5px;
     border-radius: 8px;
-    border: 1px solid white;
 }
 
 .clearTeam:hover{
     color: white;
+    font-weight: ;
     background: rgb(58, 71, 90);
-    border: 1px solid white;
 }
 @media (max-width: 500px){
     .teamButtons{
@@ -54,7 +55,6 @@
         border: none;
         padding: 5px;
         border-radius: 8px;
-        border: 1px solid white;
     }
     }
      
