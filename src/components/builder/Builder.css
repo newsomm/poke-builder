@@ -24,8 +24,9 @@
 .clearTeam{
     font-size: 12px;
     border: none;
-    padding: 5px;
+    padding: 10px;
     border-radius: 8px;
+    font-weight: 600;
 }
 
 .clearTeam:hover{

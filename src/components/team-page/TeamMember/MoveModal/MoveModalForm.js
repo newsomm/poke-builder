@@ -56,8 +56,8 @@ const MoveModalForm = ({ pokeName, syncMoves, setForm, moves, id, fixedName }) =
                     )
                 })}
             </div>
-            <button className='clearTeam modalButtons' onClick={setForm}>Cancel</button>
-            <button className='clearTeam modalButtons' type='submit' onClick={() => checkValid(moveForm)}>Save</button>
+            <button className='clearTeam modalButtons cTButton' onClick={setForm}>Cancel</button>
+            <button className='clearTeam modalButtons cTButton' type='submit' onClick={() => checkValid(moveForm)}>Save</button>
         </div>
     )
 }
